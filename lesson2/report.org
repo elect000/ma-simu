@@ -1,0 +1,66 @@
+#+TITLE: 数理アルゴリズムとシミュレーション
+#+SUBTITLE: 演習課題１
+#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
+# This is a Bibtex reference
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
+#+DATE: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: 
+#+LATEX_HEADER_EXTRA: \DeclareMathOperator*{\argmax}{argmax}
+#+LATEX_HEADER_EXTRA: \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+#+LaTeX_CLASS_OPTIONS:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+STARTUP: indent overview inlineimages
+
+
+#+BEGIN_EXAMPLE
+plot(a, b)
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+plot(a, b, '--*')
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+--> plot(a, b, '--*')
+
+--> title('Plot Test')
+
+--> xlabel('ai')
+
+--> ylabel('bi')
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+surf(exp(repmat((linspace(-0.5, 0.5, 100))^2, 100, 1) + ..
+(repmat((linspace(-0.5, 0.5, 100))^2, 100, 1))'));
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+function [] = createGraph(xfrom, xto, m, a)
+x = linspace(xfrom, xto, m);
+y = zeros(1, m);
+n = size(a, 2) - 1;
+for i=1:n
+    y = (y + a(i)) .* x;
+end
+y = y + a(n + 1);
+plot(x, y)
+endfunction
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+--> createGraph(-3, 3, 30, [-2, 1, 2, 3])
+--> createGraph(-4, 4, 30, [0.4, -4.7, 4.1, -4])
+#+END_EXAMPLE
+
+

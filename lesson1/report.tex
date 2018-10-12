@@ -1,0 +1,369 @@
+% Intended LaTeX compiler: pdflatex
+\documentclass{scrartcl}
+    \usepackage{amsmath, amssymb, bm}
+		\usepackage[utf8]{inputenc}
+		\usepackage[dvipdfmx]{graphicx}
+		\usepackage[dvipdfmx]{color}
+		\usepackage[backend=biber,bibencoding=utf8]{biblatex}
+		\usepackage{url}
+		\usepackage{indentfirst}
+		\usepackage[normalem]{ulem}
+		\usepackage{longtable}
+		\usepackage{minted}
+		\usepackage{fancyvrb}
+    \usepackage[dvipdfmx,colorlinks=false,pdfborder={0 0 0}]{hyperref}
+    \usepackage{pxjahyper}
+    \usepackage{caption}
+		\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\author{情報科学類３年 江畑 拓哉 (201611350)}
+\date{}
+\title{数理アルゴリズムとシミュレーション\\\medskip
+\large 演習課題１}
+\begin{document}
+
+\maketitle
+
+\section{課題1}
+\label{sec:orgecc3e2e}
+\subsection{}
+\label{sec:orgdd7a2fb}
+以下の命令を実行し,実行結果について説明せよ.\\
+\begin{itemize}
+\item ones(4, 3)\\
+\begin{verbatim}
+--> ones(4, 3)
+ ans  =
+
+   1.   1.   1.
+   1.   1.   1.
+   1.   1.   1.
+   1.   1.   1.
+\end{verbatim}
+\end{itemize}
+　すべての要素が1の4行3列の行列を作成する。\\
+\begin{itemize}
+\item eye(5, 3)\\
+\begin{verbatim}
+--> eye(5, 3)
+ ans  =
+
+   1.   0.   0.
+   0.   1.   0.
+   0.   0.   1.
+   0.   0.   0.
+   0.   0.   0.
+\end{verbatim}
+\end{itemize}
+　対角要素が1の5行3列の行列を作成する。\\
+\begin{itemize}
+\item zeros(3, 4)\\
+\begin{verbatim}
+--> zeros(3,4)
+ ans  =
+
+   0.   0.   0.   0.
+   0.   0.   0.   0.
+   0.   0.   0.   0.
+\end{verbatim}
+\end{itemize}
+　すべての要素が0の3行4列の行列を作成する。\\
+\begin{itemize}
+\item linspace(-1, 1, 10)\\
+\begin{verbatim}
+--> linspace(-1,1,10)
+ ans  =
+
+
+         column 1 to 3
+
+  -1.  -0.7777778  -0.5555556
+
+         column 4 to 5
+
+  -0.3333333  -0.1111111
+
+         column 6 to 7
+
+   0.1111111   0.3333333
+
+         column 8 to 10
+
+   0.5555556   0.7777778   1.
+\end{verbatim}
+\end{itemize}
+　-1 から 1 へ向かう等間隔に並んだ10個の点を含んだ一次元配列を作成する。\\
+\subsection{}
+\label{sec:org727c085}
+　v = [1; -2]; w = [1 2]; A = [1 2; 3 4]; を実行し,以下の問いに答えよ.\\
+\subsubsection{1-2-1}
+\label{sec:org92e0e3b}
+　size 関数について以下の命令を実行し,実行結果を比較せよ.\\
+\begin{itemize}
+\item size(v)\\
+\begin{verbatim}
+--> size(v)
+ ans  =
+
+   2.   1.
+\end{verbatim}
+\end{itemize}
+　2行1列であることを示している。\\
+\begin{itemize}
+\item size(w)\\
+\begin{verbatim}
+--> size(w)
+ ans  =
+
+   1.   2.
+\end{verbatim}
+\end{itemize}
+　1行2列であることを示している。\\
+\begin{itemize}
+\item size(A)\\
+\begin{verbatim}
+--> size(A)
+ ans  =
+
+   2.   2.
+\end{verbatim}
+\end{itemize}
+　2行2列であることを示している。\\
+\subsubsection{1-2-2}
+\label{sec:org0755003}
+　max 関数について以下の命令を実行し、実行結果を比較せよ.\\
+\begin{itemize}
+\item max(A)\\
+\begin{verbatim}
+--> max(A)
+ ans  =
+
+   4.
+\end{verbatim}
+\end{itemize}
+　　A のすべての要素に対して最大の要素を返している。\\
+\begin{itemize}
+\item max(A, 'c')\\
+\begin{verbatim}
+--> max(A, 'c')
+ ans  =
+
+   2.
+   4.
+\end{verbatim}
+\end{itemize}
+　Aの各行に対して最大の要素を返している。\\
+\begin{itemize}
+\item max(A, 'r')\\
+\begin{verbatim}
+--> max(A, 'r')
+ ans  =
+
+   3.   4.
+\end{verbatim}
+\end{itemize}
+　Aの各列に対して最大の要素を返している。\\
+\subsubsection{1-2-3}
+\label{sec:orga23d76f}
+　sum 関数について以下の命令を実行し,実行結果を比較せよ.\\
+\begin{itemize}
+\item sum(A)\\
+\begin{verbatim}
+--> sum(A)
+ ans  =
+
+   10.
+\end{verbatim}
+\end{itemize}
+　Aのすべての要素を加算した値を返している。\\
+\begin{itemize}
+\item sum(A, 1)\\
+\begin{verbatim}
+--> sum(A, 1)
+ ans  =
+
+   4.   6.
+\end{verbatim}
+\end{itemize}
+　Aの各行に対して加算した値を返している。\\
+\begin{itemize}
+\item sum(A, 2)\\
+\begin{verbatim}
+--> sum(A, 2)
+ ans  =
+
+   3.
+   7.
+\end{verbatim}
+\end{itemize}
+　Aの各列に対して加算した値を返している。\\
+\subsubsection{1-2-4}
+\label{sec:org9d1e433}
+　以下の命令を実行し,実行結果について説明せよ.\\
+\begin{itemize}
+\item norm(v)\\
+\begin{verbatim}
+--> norm(v)
+ ans  =
+
+   2.236068
+\end{verbatim}
+\end{itemize}
+　そのベクトルのノルムを返している。\\
+\begin{itemize}
+\item gsort(v)\\
+\begin{verbatim}
+--> gsort(v)
+ ans  =
+
+   1.
+  -2.
+\end{verbatim}
+\end{itemize}
+　要素に対してソートを行って、大きい値順に返している。\\
+\begin{itemize}
+\item abs(v)\\
+\begin{verbatim}
+--> abs(v)
+ ans  =
+
+   1.
+   2.
+\end{verbatim}
+\end{itemize}
+　絶対値を取った値を返している。\\
+\begin{itemize}
+\item inv(A)\\
+\begin{verbatim}
+--> inv(A)
+ ans  =
+
+  -2.    1. 
+   1.5  -0.5
+\end{verbatim}
+\end{itemize}
+　逆行列を返している。\\
+\section{課題2}
+\label{sec:org8aeabaf}
+\subsection{}
+\label{sec:org9e67b66}
+　 \(\bm{A}\) と \(\bm{v}\) を変数 A と v へ代入せよ.\\
+\begin{verbatim}
+--> A = [4, -2, 0; -1, 4, -2; 0, -1, 4]
+ A  = 
+
+   4.  -2.   0.
+  -1.   4.  -2.
+   0.  -1.   4.
+-> v = [3; 0; 1.5]
+ v  = 
+
+   3.
+   0.
+   1.5
+\end{verbatim}
+\subsection{}
+\label{sec:org53ab680}
+　 \(\bm{A}\bm{v}\) の計算結果を示せ.\\
+\begin{verbatim}
+--> A * v
+ ans  =
+
+   12.
+  -6.
+   6.
+\end{verbatim}
+
+\subsection{}
+\label{sec:orgb856c28}
+　ベクトル \(\bm{v}\) の 2 ノルム \(||v||_2\) を求めよ. Scilab の norm 関数を用いてもよい.\\
+\begin{verbatim}
+-> norm(v)
+ ans  =
+
+   3.354102
+\end{verbatim}
+\subsection{}
+\label{sec:orgfe9e232}
+　線形方程式 \(\bm{A}\bm{x} = \bm{v}\) の解 \(\bm{x}\) を求めよ.\\
+\begin{verbatim}
+--> A \ v
+ ans  =
+
+   1.
+   0.5
+   0.5
+\end{verbatim}
+
+\section{課題3}
+\label{sec:org2b89c28}
+公式の左辺と右辺を計算せよ.\\
+\begin{itemize}
+\item 値を代入する。\\
+\begin{verbatim}
+--> A = [1, -1, 0; -1, 2, -1; 0, -1, 2], x = [1;2;3], y = [-2; 2; 1]
+ A  = 
+
+   1.  -1.   0.
+  -1.   2.  -1.
+   0.  -1.   2.
+
+ x  = 
+
+   1.
+   2.
+   3.
+
+ y  = 
+
+  -2.
+   2.
+   1.
+\end{verbatim}
+\item 左辺を計算する。\\
+\begin{verbatim}
+--> inv(A + x * y')
+ ans  =
+
+   5.    0.   -1. 
+   3.8   0.2  -0.8
+   2.2  -0.2  -0.2
+\end{verbatim}
+\item 右辺の計算する。\\
+\begin{verbatim}
+--> inv(A) - (1 / (1 + y' * inv(A) * x))*(inv(A)*x)*(y'*inv(A))
+ ans  =
+
+   5.    0.   -1. 
+   3.8   0.2  -0.8
+   2.2  -0.2  -0.2
+\end{verbatim}
+\end{itemize}
+\section{課題4}
+\label{sec:org901e674}
+\subsection{}
+\label{sec:orgcee286a}
+　gsort 関数と abs 関数を用いて, 1 次元配列の絶対値最小の要素と絶対値が 2 番目に小さい要素を返す関数を作成せよ.ただし,返す値は絶対値ではなく,もとの\\
+要素の値とすること。\\
+\begin{verbatim}
+function [val1, val2] = myfunc(vec)
+[vals, idxs] = gsort(abs(vec))
+idxs = flipdim(idxs, 2)
+val1 = vec(idxs(1))
+val2 =  vec(idxs(2))
+endfunction
+\end{verbatim}
+
+\subsection{}
+\label{sec:org4d1a58d}
+\begin{verbatim}
+--> [val1, val2] = myfunc(datas)
+ val2  = 
+
+  -0.048493
+
+ val1  = 
+
+  -0.0278533
+\end{verbatim}
+\end{document}
