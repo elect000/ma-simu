@@ -1,5 +1,6 @@
 #+TITLE: 数理アルゴリズムとシミュレーション
-#+SUBTITLE: 演習課題１
+#+SUBTITLE: 演習課題2
+
 #+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
 # This is a Bibtex reference
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
@@ -20,21 +21,6 @@
 #+DESCRIPTION:
 #+KEYWORDS:
 #+STARTUP: indent overview inlineimages
-
-
-#+BEGIN_EXAMPLE
-function [] = createGraph(xfrom, xto, m, a)
-x = linspace(xfrom, xto, m);
-y = zeros(1, m);
-n = size(a, 2) - 1;
-for i=1:n
-    y = (y + a(i)) .* x;
-end
-y = y + a(n + 1);
-plot(x, y)
-endfunction
-#+END_EXAMPLE
-
 
 * 課題1
 ** 
@@ -69,6 +55,7 @@ plot(a, b, '--*')
 #+ATTR_LATEX: :width 10cm
 [[./1-3.png]]
 * 課題2
+次に示すベクトルからなるデータ列を片対数グラフで描画せよ.また,通常のグラフも描画し,片対数グラフと比較して違いを考察せよ.
 #+BEGIN_EXAMPLE
 --> a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 --> b = [0.5, 0.6, 1.5, 1.4, 1.3, 360, 180, 160, 130, 200, 80]
@@ -84,14 +71,17 @@ plot(a, b, '--*')
 #+ATTR_LATEX: :width 10cm
 [[./2-kata.png]]
 * 課題3
+$z = e^{x^2+y^2}$ のグラフを surf 関数を用いて描画せよ.
 #+BEGIN_EXAMPLE
-surf(exp(repmat((linspace(-0.5, 0.5, 100))^2, 100, 1) + ..
+surf(linspace(-0.5, 0.5, 100), linspace(-0.5, 0.5, 100), ..
+exp(repmat((linspace(-0.5, 0.5, 100))^2, 100, 1) + ..
 (repmat((linspace(-0.5, 0.5, 100))^2, 100, 1))'));
 #+END_EXAMPLE
 #+ATTR_LATEX: :width 10cm
 [[./3.png]]
 * 課題4
 ** 
+x 軸の範囲,分割点数および係数をパラメータとして多項式関数の描画を行う Scilab の関数を作成せよ.
 #+BEGIN_EXAMPLE
 function [] = createGraph(xfrom, xto, m, a)
 x = linspace(xfrom, xto, m);
@@ -105,9 +95,11 @@ plot(x, y)
 endfunction
 #+END_EXAMPLE
 ** 
+$y=-2x^3+x^2+2x+3$ $(-3\leq x\leq 3)$ および
+$y = 0.4x^4 - 4.7 x^2 + 4.1x - 4$ $( -4 \leq x \leq 4)$ のグラフを描画せよ.
 #+BEGIN_EXAMPLE
 --> createGraph(-3, 3, 30, [-2, 1, 2, 3])
---> createGraph(-4, 4, 30, [0.4, -4.7, 4.1, -4])
+--> createGraph(-4, 4, 30, [0.4, 0, -4.7, 4.1, -4])
 #+END_EXAMPLE
 #+ATTR_LATEX: :width 10cm
 [[./4-1.png]]

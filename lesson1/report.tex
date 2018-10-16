@@ -1,33 +1,35 @@
 % Intended LaTeX compiler: pdflatex
-\documentclass{scrartcl}
-    \usepackage{amsmath, amssymb, bm}
-		\usepackage[utf8]{inputenc}
-		\usepackage[dvipdfmx]{graphicx}
-		\usepackage[dvipdfmx]{color}
-		\usepackage[backend=biber,bibencoding=utf8]{biblatex}
-		\usepackage{url}
-		\usepackage{indentfirst}
-		\usepackage[normalem]{ulem}
-		\usepackage{longtable}
-		\usepackage{minted}
-		\usepackage{fancyvrb}
-    \usepackage[dvipdfmx,colorlinks=false,pdfborder={0 0 0}]{hyperref}
-    \usepackage{pxjahyper}
-    \usepackage{caption}
-		\DeclareMathOperator*{\argmax}{argmax}
-\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
-\author{情報科学類３年 江畑 拓哉 (201611350)}
-\date{}
-\title{数理アルゴリズムとシミュレーション\\\medskip
-\large 演習課題１}
+\documentclass[a4j, 11pt]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb, bm}
+
+\makeatletter
+\author{201611350 江畑 拓哉}
+\date{2017年10月16日}
+\title{演習課題1}
+
+\pagestyle{fancy}
+
+% headers & footers
+\lhead{数理アルゴリズム　\@title　提出日：\@date\\\@author}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage /\pageref{LastPage}}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\makeatother
+
 \begin{document}
-
-\maketitle
-
 \section{課題1}
-\label{sec:orgecc3e2e}
+\label{sec:org1fc4f40}
 \subsection{}
-\label{sec:orgdd7a2fb}
+\label{sec:orgc44cb96}
 以下の命令を実行し,実行結果について説明せよ.\\
 \begin{itemize}
 \item ones(4, 3)\\
@@ -94,10 +96,10 @@
 \end{itemize}
 　-1 から 1 へ向かう等間隔に並んだ10個の点を含んだ一次元配列を作成する。\\
 \subsection{}
-\label{sec:org727c085}
+\label{sec:org54c4f9f}
 　v = [1; -2]; w = [1 2]; A = [1 2; 3 4]; を実行し,以下の問いに答えよ.\\
 \subsubsection{1-2-1}
-\label{sec:org92e0e3b}
+\label{sec:orgeb90f04}
 　size 関数について以下の命令を実行し,実行結果を比較せよ.\\
 \begin{itemize}
 \item size(v)\\
@@ -130,7 +132,7 @@
 \end{itemize}
 　2行2列であることを示している。\\
 \subsubsection{1-2-2}
-\label{sec:org0755003}
+\label{sec:orgf6d6203}
 　max 関数について以下の命令を実行し、実行結果を比較せよ.\\
 \begin{itemize}
 \item max(A)\\
@@ -164,7 +166,7 @@
 \end{itemize}
 　Aの各列に対して最大の要素を返している。\\
 \subsubsection{1-2-3}
-\label{sec:orga23d76f}
+\label{sec:orgeace88f}
 　sum 関数について以下の命令を実行し,実行結果を比較せよ.\\
 \begin{itemize}
 \item sum(A)\\
@@ -198,7 +200,7 @@
 \end{itemize}
 　Aの各列に対して加算した値を返している。\\
 \subsubsection{1-2-4}
-\label{sec:org9d1e433}
+\label{sec:orgbead620}
 　以下の命令を実行し,実行結果について説明せよ.\\
 \begin{itemize}
 \item norm(v)\\
@@ -244,9 +246,9 @@
 \end{itemize}
 　逆行列を返している。\\
 \section{課題2}
-\label{sec:org8aeabaf}
+\label{sec:orgdd0afb9}
 \subsection{}
-\label{sec:org9e67b66}
+\label{sec:org45cc54b}
 　 \(\bm{A}\) と \(\bm{v}\) を変数 A と v へ代入せよ.\\
 \begin{verbatim}
 --> A = [4, -2, 0; -1, 4, -2; 0, -1, 4]
@@ -263,7 +265,7 @@
    1.5
 \end{verbatim}
 \subsection{}
-\label{sec:org53ab680}
+\label{sec:orge422a4d}
 　 \(\bm{A}\bm{v}\) の計算結果を示せ.\\
 \begin{verbatim}
 --> A * v
@@ -275,7 +277,7 @@
 \end{verbatim}
 
 \subsection{}
-\label{sec:orgb856c28}
+\label{sec:org38e22c1}
 　ベクトル \(\bm{v}\) の 2 ノルム \(||v||_2\) を求めよ. Scilab の norm 関数を用いてもよい.\\
 \begin{verbatim}
 -> norm(v)
@@ -284,7 +286,7 @@
    3.354102
 \end{verbatim}
 \subsection{}
-\label{sec:orgfe9e232}
+\label{sec:org2564028}
 　線形方程式 \(\bm{A}\bm{x} = \bm{v}\) の解 \(\bm{x}\) を求めよ.\\
 \begin{verbatim}
 --> A \ v
@@ -296,7 +298,7 @@
 \end{verbatim}
 
 \section{課題3}
-\label{sec:org2b89c28}
+\label{sec:org1070888}
 公式の左辺と右辺を計算せよ.\\
 \begin{itemize}
 \item 値を代入する。\\
@@ -340,9 +342,9 @@
 \end{verbatim}
 \end{itemize}
 \section{課題4}
-\label{sec:org901e674}
+\label{sec:org1448440}
 \subsection{}
-\label{sec:orgcee286a}
+\label{sec:orgd6e0ba6}
 　gsort 関数と abs 関数を用いて, 1 次元配列の絶対値最小の要素と絶対値が 2 番目に小さい要素を返す関数を作成せよ.ただし,返す値は絶対値ではなく,もとの\\
 要素の値とすること。\\
 \begin{verbatim}
@@ -355,7 +357,7 @@ endfunction
 \end{verbatim}
 
 \subsection{}
-\label{sec:org4d1a58d}
+\label{sec:org378b8ef}
 \begin{verbatim}
 --> [val1, val2] = myfunc(datas)
  val2  = 
