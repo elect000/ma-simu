@@ -1,0 +1,17 @@
+*.dvi
+*.toc
+*.log
+*.xml
+*.aux
+*.bcf
+*.run.xml
+*.out
+*/ltximg/
+*/_minted-report/
+*.pygstyle
+*.vrb
+*.snm
+*.sty
+*.blg
+*.bbl
+*.tex

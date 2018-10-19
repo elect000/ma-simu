@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  19 OCT 2018 09:53
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  19 OCT 2018 10:11
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -413,18 +413,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1
 
-]) 
-
-! Package inputenc Error: Unicode character �^^89� (U+2264)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 反復は \(R ^^e2^^89^^a4
-                             10^－3\) となったところで停止せよ.\\
-? 
+])
 \openout3 = `report.pyg'.
 
 
@@ -433,10 +422,6 @@ l.90 反復は \(R ^^e2^^89^^a4
 File: ./1-3.png Graphic file (type bmp)
 <./1-3.png>
 \openout3 = `report.pyg'.
-
-runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
-minted-report/ED9C1227CF0B0AC06F6089EB179156735BE65D59CE54B8D0CE073EB7B9E5B63F.
-pygtex report.pyg)...executed.
 
 
 (./_minted-report/ED9C1227CF0B0AC06F6089EB179156735BE65D59CE54B8D0CE073EB7B9E5B
@@ -499,11 +484,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6]
-runsystem(rm _minted-report/C244C8168D70AB7243784A23FC40C2FC5BE65D59CE54B8D0CE0
-73EB7B9E5B63F.pygtex)...executed.
-
- (./report.aux)
+[6] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -511,12 +492,12 @@ runsystem(rm report.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 5328 strings out of 493250
- 90701 string characters out of 6149318
- 207824 words of memory out of 5000000
- 9142 multiletter control sequences out of 15000+600000
+ 5326 strings out of 493250
+ 90631 string characters out of 6149318
+ 206824 words of memory out of 5000000
+ 9141 multiletter control sequences out of 15000+600000
  21472 words of font info for 84 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  37i,12n,43p,834b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (6 pages, 24148 bytes).
+Output written on report.dvi (6 pages, 24156 bytes).
