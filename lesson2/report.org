@@ -24,25 +24,25 @@
 
 * 課題1
 ** 
-　次に示す配列 a, b からなるデータ列を配列 a の i 番目の要素 a i を横軸に,配列 b の i 番目の要素 b i を縦軸としたグラフを描画せよ.その際, plot 関数を使うこ
-と.
-#+BEGIN_EXAMPLE
+　次に示す配列 a, b からなるデータ列を配列 a の i 番目の要素 a i を横軸に,配列 b の i 番目の要素 b i を縦軸としたグラフを描画せよ.その際, plot 関数を使うこと.
+#+BEGIN_SRC text
 plot(a, b)
-#+END_EXAMPLE
+#+END_SRC
+
 
 #+ATTR_LATEX: :width 10cm
 [[./1-1.png]]
 ** 
 　(1-1) で用いたデータ列を使用して,破線と任意のマーカーを用いてグラフを描画せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 plot(a, b, '--*')
-#+END_EXAMPLE
+#+END_SRC
 
 #+ATTR_LATEX: :width 10cm
 [[./1-2.png]]
 ** 
 　(1-2) で描画したグラフに対して,タイトルと軸ラベルを表示せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 --> plot(a, b, '--*')
 
 --> title('Plot Test')
@@ -50,39 +50,40 @@ plot(a, b, '--*')
 --> xlabel('ai')
 
 --> ylabel('bi')
-#+END_EXAMPLE
+#+END_SRC
 
 #+ATTR_LATEX: :width 10cm
 [[./1-3.png]]
 * 課題2
 次に示すベクトルからなるデータ列を片対数グラフで描画せよ.また,通常のグラフも描画し,片対数グラフと比較して違いを考察せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 --> a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 --> b = [0.5, 0.6, 1.5, 1.4, 1.3, 360, 180, 160, 130, 200, 80]
 --> plot2d('nn', a, b)
-#+END_EXAMPLE
+#+END_SRC
 
 #+ATTR_LATEX: :width 10cm
 [[./2-no-kata.png]]
 
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 --> plot2d('nl', a, b)
-#+END_EXAMPLE
+#+END_SRC
 #+ATTR_LATEX: :width 10cm
 [[./2-kata.png]]
+　b の値の分布に偏りがある場合、通常のグラフでは変化の小さい部分に対する変化がほとんど視認できないが、片対数グラフにすることによってその変化を視認できるようになる。
 * 課題3
 $z = e^{x^2+y^2}$ のグラフを surf 関数を用いて描画せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 surf(linspace(-0.5, 0.5, 100), linspace(-0.5, 0.5, 100), ..
 exp(repmat((linspace(-0.5, 0.5, 100))^2, 100, 1) + ..
 (repmat((linspace(-0.5, 0.5, 100))^2, 100, 1))'));
-#+END_EXAMPLE
+#+END_SRC
 #+ATTR_LATEX: :width 10cm
 [[./3.png]]
 * 課題4
 ** 
 x 軸の範囲,分割点数および係数をパラメータとして多項式関数の描画を行う Scilab の関数を作成せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 function [] = createGraph(xfrom, xto, m, a)
 x = linspace(xfrom, xto, m);
 y = zeros(1, m);
@@ -93,14 +94,14 @@ end
 y = y + a(n + 1);
 plot(x, y)
 endfunction
-#+END_EXAMPLE
+#+END_SRC
 ** 
 $y=-2x^3+x^2+2x+3$ $(-3\leq x\leq 3)$ および
 $y = 0.4x^4 - 4.7 x^2 + 4.1x - 4$ $( -4 \leq x \leq 4)$ のグラフを描画せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text
 --> createGraph(-3, 3, 30, [-2, 1, 2, 3])
 --> createGraph(-4, 4, 30, [0.4, 0, -4.7, 4.1, -4])
-#+END_EXAMPLE
+#+END_SRC
 #+ATTR_LATEX: :width 10cm
 [[./4-1.png]]
 #+ATTR_LATEX: :width 10cm

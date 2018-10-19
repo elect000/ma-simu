@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{n} \PYG{p}{=} \PYG{l+m+mi}{50}\PYG{p}{;}
+\PYG{n}{u} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{n}{u}\PYG{p}{(:,} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{u}\PYG{p}{(:,} \PYG{l+m+mi}{52}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{50} \PYG{o}{*} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{52}\PYG{p}{))}\PYGZca{}\PYG{l+m+mi}{4}\PYG{p}{;}
+\PYG{n}{u}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{:)} \PYG{p}{=} \PYG{l+m+mi}{50} \PYG{o}{*} \PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{52}\PYG{p}{);}
+\PYG{n}{u}\PYG{p}{(}\PYG{l+m+mi}{52}\PYG{p}{,} \PYG{p}{:)} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{u}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{:}\PYG{l+m+mi}{36}\PYG{p}{,} \PYG{l+m+mi}{18}\PYG{p}{:}\PYG{l+m+mi}{36}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{40}\PYG{p}{;}
+\PYG{n}{R} \PYG{p}{=} \PYG{l+m+mi}{100}
+\PYG{n}{s} \PYG{p}{=} \PYG{l+m+mi}{1}
+\PYG{k}{while} \PYG{n}{R} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{10}\PYGZca{}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{,}
+  \PYG{n}{s} \PYG{p}{=} \PYG{n}{s} \PYG{o}{+} \PYG{l+m+mi}{1}
+  \PYG{p}{[}\PYG{n}{u}\PYG{p}{,} \PYG{n}{R}\PYG{p}{]} \PYG{p}{=} \PYG{n}{get\PYGZus{}R\PYGZus{}2}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{l+m+mi}{18}\PYG{p}{,} \PYG{l+m+mi}{36}\PYG{p}{);}
+\PYG{k}{end}
+\PYG{n}{s}
+\PYG{n}{u}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{:}\PYG{l+m+mi}{36}\PYG{p}{,} \PYG{l+m+mi}{18}\PYG{p}{:}\PYG{l+m+mi}{36}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{surf}\PYG{p}{(}\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{52}\PYG{p}{),} \PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{52}\PYG{p}{),} \PYG{n}{u}\PYG{o}{\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

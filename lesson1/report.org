@@ -32,7 +32,7 @@
 ** 
      以下の命令を実行し,実行結果について説明せよ.
      - ones(4, 3)
-       #+begin_example
+       #+begin_src Scilab
 --> ones(4, 3)
  ans  =
 
@@ -40,10 +40,10 @@
    1.   1.   1.
    1.   1.   1.
    1.   1.   1.
-#+end_example
+#+end_src
      　すべての要素が1の4行3列の行列を作成する。
      - eye(5, 3)
-       #+BEGIN_EXAMPLE
+       #+BEGIN_SRC SCILAB
 --> eye(5, 3)
  ans  =
 
@@ -52,20 +52,20 @@
    0.   0.   1.
    0.   0.   0.
    0.   0.   0.
-#+END_EXAMPLE
+#+END_SRC
      　対角要素が1の5行3列の行列を作成する。
      - zeros(3, 4)
-       #+BEGIN_EXAMPLE
+       #+BEGIN_SRC SCILAB
 --> zeros(3,4)
  ans  =
 
    0.   0.   0.   0.
    0.   0.   0.   0.
    0.   0.   0.   0.
-#+END_EXAMPLE
+#+END_SRC
      　すべての要素が0の3行4列の行列を作成する。
      - linspace(-1, 1, 10)
-       #+BEGIN_EXAMPLE
+       #+BEGIN_SRC SCILAB
 --> linspace(-1,1,10)
  ans  =
 
@@ -85,131 +85,131 @@
          column 8 to 10
 
    0.5555556   0.7777778   1.
-#+END_EXAMPLE
+#+END_SRC
      　-1 から 1 へ向かう等間隔に並んだ10個の点を含んだ一次元配列を作成する。
 ** 
 　v = [1; -2]; w = [1 2]; A = [1 2; 3 4]; を実行し,以下の問いに答えよ.
 *** 1-2-1
 　size 関数について以下の命令を実行し,実行結果を比較せよ.
 - size(v)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> size(v)
  ans  =
 
    2.   1.
-#+END_EXAMPLE
+#+END_SRC
 　2行1列であることを示している。
 - size(w)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> size(w)
  ans  =
 
    1.   2.
-#+END_EXAMPLE
+#+END_SRC
 　1行2列であることを示している。
 - size(A)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> size(A)
  ans  =
 
    2.   2.
-#+END_EXAMPLE
+#+END_SRC
 　2行2列であることを示している。
 *** 1-2-2
 　max 関数について以下の命令を実行し、実行結果を比較せよ.
 - max(A)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> max(A)
  ans  =
 
    4.
-#+END_EXAMPLE
+#+END_SRC
 　　A のすべての要素に対して最大の要素を返している。
 - max(A, 'c')
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> max(A, 'c')
  ans  =
 
    2.
    4.
-#+END_EXAMPLE
+#+END_SRC
 　Aの各行に対して最大の要素を返している。
 - max(A, 'r')
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> max(A, 'r')
  ans  =
 
    3.   4.
-#+END_EXAMPLE
+#+END_SRC
 　Aの各列に対して最大の要素を返している。
 *** 1-2-3
 　sum 関数について以下の命令を実行し,実行結果を比較せよ.
 - sum(A)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> sum(A)
  ans  =
 
    10.
-#+END_EXAMPLE
+#+END_SRC
 　Aのすべての要素を加算した値を返している。
 - sum(A, 1)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> sum(A, 1)
  ans  =
 
    4.   6.
-#+END_EXAMPLE
+#+END_SRC
 　Aの各行に対して加算した値を返している。
 - sum(A, 2)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> sum(A, 2)
  ans  =
 
    3.
    7.
-#+END_EXAMPLE
+#+END_SRC
 　Aの各列に対して加算した値を返している。
 *** 1-2-4
 　以下の命令を実行し,実行結果について説明せよ.
 - norm(v)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> norm(v)
  ans  =
 
    2.236068
-#+END_EXAMPLE
+#+END_SRC
 　そのベクトルのノルムを返している。
 - gsort(v)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> gsort(v)
  ans  =
 
    1.
   -2.
-#+END_EXAMPLE
+#+END_SRC
 　要素に対してソートを行って、大きい値順に返している。
 - abs(v)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> abs(v)
  ans  =
 
    1.
    2.
-#+END_EXAMPLE
+#+END_SRC
 　絶対値を取った値を返している。
 - inv(A)
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> inv(A)
  ans  =
 
   -2.    1. 
    1.5  -0.5
-#+END_EXAMPLE
+#+END_SRC
 　逆行列を返している。
 * 課題2
 ** 
 　 $\bm{A}$ と $\bm{v}$ を変数 A と v へ代入せよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC SCILAB
 --> A = [4, -2, 0; -1, 4, -2; 0, -1, 4]
  A  = 
 
@@ -222,41 +222,41 @@
    3.
    0.
    1.5
-#+END_EXAMPLE
+#+END_SRC
 ** 
 　 $\bm{A}\bm{v}$ の計算結果を示せ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC SCILAB
 --> A * v
  ans  =
 
    12.
   -6.
    6.
-#+END_EXAMPLE
+#+END_SRC
 
 ** 
 　ベクトル $\bm{v}$ の 2 ノルム $||v||_2$ を求めよ. Scilab の norm 関数を用いてもよい.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC SCILAB
 -> norm(v)
  ans  =
 
    3.354102
-#+END_EXAMPLE
+#+END_SRC
 ** 
 　線形方程式 $\bm{A}\bm{x} = \bm{v}$ の解 $\bm{x}$ を求めよ.
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC SCILAB
 --> A \ v
  ans  =
 
    1.
    0.5
    0.5
-#+END_EXAMPLE
+#+END_SRC
 
 * 課題3
 公式の左辺と右辺を計算せよ.
 - 値を代入する。
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> A = [1, -1, 0; -1, 2, -1; 0, -1, 2], x = [1;2;3], y = [-2; 2; 1]
  A  = 
 
@@ -275,40 +275,39 @@
   -2.
    2.
    1.
-#+END_EXAMPLE
+#+END_SRC
 - 左辺を計算する。
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> inv(A + x * y')
  ans  =
 
    5.    0.   -1. 
    3.8   0.2  -0.8
    2.2  -0.2  -0.2
-#+END_EXAMPLE
+#+END_SRC
 - 右辺の計算する。
-  #+BEGIN_EXAMPLE
+  #+BEGIN_SRC SCILAB
 --> inv(A) - (1 / (1 + y' * inv(A) * x))*(inv(A)*x)*(y'*inv(A))
  ans  =
 
    5.    0.   -1. 
    3.8   0.2  -0.8
    2.2  -0.2  -0.2
-#+END_EXAMPLE
+#+END_SRC
 * 課題4
 ** 
-　gsort 関数と abs 関数を用いて, 1 次元配列の絶対値最小の要素と絶対値が 2 番目に小さい要素を返す関数を作成せよ.ただし,返す値は絶対値ではなく,もとの
-要素の値とすること。
-#+BEGIN_EXAMPLE
+gsort 関数と abs 関数を用いて, 1 次元配列の絶対値最小の要素と絶対値が 2 番目に小さい要素を返す関数を作成せよ.ただし,返す値は絶対値ではなく,もとの要素の値とすること。
+#+BEGIN_SRC SCILAB
 function [val1, val2] = myfunc(vec)
 [vals, idxs] = gsort(abs(vec))
 idxs = flipdim(idxs, 2)
 val1 = vec(idxs(1))
 val2 =  vec(idxs(2))
 endfunction
-#+END_EXAMPLE
+#+END_SRC
 
 ** 
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC SCILAB
 --> [val1, val2] = myfunc(datas)
  val2  = 
 
@@ -317,4 +316,4 @@ endfunction
  val1  = 
 
   -0.0278533
-#+END_EXAMPLE
+#+END_SRC

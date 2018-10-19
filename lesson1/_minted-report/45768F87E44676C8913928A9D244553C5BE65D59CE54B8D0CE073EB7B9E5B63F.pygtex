@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZgt{}} \PYG{n}{A} \PYG{o}{*} \PYG{n}{v}
+ \PYG{n}{ans}  \PYG{p}{=}
+
+   \PYG{l+m+mf}{12.}
+  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{6.}
+   \PYG{l+m+mf}{6.}
+\end{Verbatim}

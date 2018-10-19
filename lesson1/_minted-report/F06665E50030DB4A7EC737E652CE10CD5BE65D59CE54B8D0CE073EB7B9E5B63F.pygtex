@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{inv}\PYG{p}{(}\PYG{n}{A} \PYG{o}{+} \PYG{n}{x} \PYG{o}{*} \PYG{n}{y}\PYG{o}{\PYGZsq{}}\PYG{p}{)}
+ \PYG{n}{ans}  \PYG{p}{=}
+
+   \PYG{l+m+mf}{5.}    \PYG{l+m+mf}{0.}   \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.}
+   \PYG{l+m+mf}{3.8}   \PYG{l+m+mf}{0.2}  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.8}
+   \PYG{l+m+mf}{2.2}  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.2}  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.2}
+\end{Verbatim}

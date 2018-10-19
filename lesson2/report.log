@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  16 OCT 2018 16:15
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  18 OCT 2018 14:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -159,28 +159,202 @@ Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldmincho=\mathgroup10
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 207.
-) (./report.aux)
+)
+(/usr/share/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2017/07/08 v1.3.1 fvextra - extensions and patches for fancyvr
+b
+
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count105
+)
+(/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count106
+\FV@InFile=\read1
+\FV@TabBox=\box44
+\c@FancyVerbLine=\count107
+\FV@StepNumber=\count108
+\FV@OutFile=\write3
+) (/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+(/usr/share/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count109
+\output=\toks21
+\linenoprevgraf=\count110
+\linenumbersep=\dimen132
+\linenumberwidth=\dimen133
+\c@linenumber=\count111
+\c@pagewiselinenumber=\count112
+\c@LN@truepage=\count113
+\c@internallinenumber=\count114
+\c@internallinenumbers=\count115
+\quotelinenumbersep=\dimen134
+\bframerule=\dimen135
+\bframesep=\dimen136
+\bframebox=\box45
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count116
+\c@FV@TrueTabCounter=\count117
+\FV@TabBox@Group=\box46
+\FV@TmpLength=\skip55
+\c@FV@HighlightLinesStart=\count118
+\c@FV@HighlightLinesStop=\count119
+\FV@LoopCount=\count120
+\FV@NCharsBox=\box47
+\FV@BreakIndent=\dimen137
+\FV@BreakIndentNChars=\count121
+\FV@BreakSymbolSepLeft=\dimen138
+\FV@BreakSymbolSepLeftNChars=\count122
+\FV@BreakSymbolSepRight=\dimen139
+\FV@BreakSymbolSepRightNChars=\count123
+\FV@BreakSymbolIndentLeft=\dimen140
+\FV@BreakSymbolIndentLeftNChars=\count124
+\FV@BreakSymbolIndentRight=\dimen141
+\FV@BreakSymbolIndentRightNChars=\count125
+\c@FancyVerbLineBreakLast=\count126
+\FV@LineBox=\box48
+\FV@LineIndentBox=\box49
+)
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count127
+\calc@Bcount=\count128
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip56
+\calc@Bskip=\skip57
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count129
+\calc@Cskip=\skip58
+)
+(/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 67.
+)
+(/usr/share/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/30 v0.27 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: pdfTeX >= 1.30 not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
+)
+runsystem(uname -s > "report.w18")...executed.
+
+ (./report.w18)
+runsystem(rm -- "report.w18")...executed.
+
+)
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
+\@xs@message=\write4
+\integerpart=\count130
+\decimalpart=\count131
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+(/usr/share/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip59
+\fb@frw=\dimen144
+\fb@frh=\dimen145
+\FrameRule=\dimen146
+\FrameSep=\dimen147
+)
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count132
+\float@exts=\toks22
+\float@box=\box50
+\@float@everytoks=\toks23
+\@floatcapt=\box51
+)
+\minted@appexistsfile=\read2
+\minted@bgbox=\box52
+\minted@code=\write5
+\c@minted@FancyVerbLineTemp=\count133
+\c@minted@pygmentizecounter=\count134
+\@float@every@listing=\toks24
+\c@listing=\count135
+)
+runsystem(mkdir -p _minted-report)...executed.
+
+runsystem(which pygmentize && touch report.aex)...executed.
+
+runsystem(rm report.aex)...executed.
+
+ (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 29.
+(lastpage)             ! on input line 28.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
@@ -189,8 +363,20 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 33.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 33.
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/default-pyg-prefix.pygstyle)
+(./_minted-report/default.pygstyle)
+(./_minted-report/96F8CBE25C50F39653A01A87BA0577A3081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./1-1.png Graphic file (type bmp)
 <./1-1.png>
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/C99EA94B2F9A28F51CCEC677C3D58A81081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./1-2.png Graphic file (type bmp)
 <./1-2.png>
 
@@ -203,40 +389,112 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1
 
 ]
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/E5CC7D9EE9DCDF009D0A56415F0314CB081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./1-3.png Graphic file (type bmp)
 <./1-3.png>
- [2]
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/A0B93D5F0B224D25C4B71A6F0226C987081164633BC01D25262B4ABDC2478
+CC9.pygtex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 28.66461pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2])
 File: ./2-no-kata.png Graphic file (type bmp)
 <./2-no-kata.png>
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/EAEA8BE74074BCDB5A7A487A6FDA7CC7081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./2-kata.png Graphic file (type bmp)
 <./2-kata.png>
-LaTeX Font Info:    Try loading font information for U+msa on input line 90.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 28.66461pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+LaTeX Font Info:    Try loading font information for U+msa on input line 92.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 90.
+LaTeX Font Info:    Try loading font information for U+msb on input line 92.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3]
+)
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/EB905C4D30EEB981234A68374AF49766081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./3.png Graphic file (type bmp)
 <./3.png>
- [4]
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/512E6F6F3F4E9D842826B07A02D7F163081164633BC01D25262B4ABDC2478
+CC9.pygtex
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10.95> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10.95> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 28.66461pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4])
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/35F92D27A0159CE7FFFE86563FA17385081164633BC01D25262B4ABDC2478
+CC9.pygtex)
 File: ./4-1.png Graphic file (type bmp)
 <./4-1.png>
 File: ./4-2.png Graphic file (type bmp)
 <./4-2.png>
 
 
-AED: lastpage setting LastPage
-[5] (./report.aux) ) 
-Here is how much of TeX's memory you used:
- 1979 strings out of 493250
- 23235 string characters out of 6149318
- 92346 words of memory out of 5000000
- 5913 multiletter control sequences out of 15000+600000
- 19066 words of font info for 74 fonts, out of 8000000 for 9000
- 929 hyphenation exceptions out of 8191
- 27i,11n,43p,211b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 28.66461pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-Output written on report.dvi (5 pages, 6100 bytes).
+[5] 
+AED: lastpage setting LastPage
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 28.66461pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6] (./report.aux)
+runsystem(rm report.pyg)...executed.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5324 strings out of 493250
+ 90618 string characters out of 6149318
+ 202824 words of memory out of 5000000
+ 9137 multiletter control sequences out of 15000+600000
+ 19444 words of font info for 76 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 37i,11n,43p,834b,527s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on report.dvi (6 pages, 11872 bytes).

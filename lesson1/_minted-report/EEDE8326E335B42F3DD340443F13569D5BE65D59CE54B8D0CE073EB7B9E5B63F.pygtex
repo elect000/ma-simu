@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZgt{}} \PYG{n}{A} \PYG{o}{\PYGZbs{}} \PYG{n}{v}
+ \PYG{n}{ans}  \PYG{p}{=}
+
+   \PYG{l+m+mf}{1.}
+   \PYG{l+m+mf}{0.5}
+   \PYG{l+m+mf}{0.5}
+\end{Verbatim}

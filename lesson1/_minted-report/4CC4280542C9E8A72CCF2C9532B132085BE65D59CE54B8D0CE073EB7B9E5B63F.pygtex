@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZgt{}} \PYG{p}{[}\PYG{n}{val1}\PYG{p}{,} \PYG{n}{val2}\PYG{p}{]} \PYG{p}{=} \PYG{n}{myfunc}\PYG{p}{(}\PYG{n}{datas}\PYG{p}{)}
+ \PYG{n}{val2}  \PYG{p}{=}
+
+  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.048493}
+
+ \PYG{n}{val1}  \PYG{p}{=}
+
+  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.0278533}
+\end{Verbatim}
