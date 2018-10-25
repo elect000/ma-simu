@@ -154,7 +154,7 @@ function [u, R] = get_R_2(u, n, th1, th2)
 r = zeros(n+2, n+2)
 for i = 2:n+1,
   for j = 2:n+1,
-    if th1 < j & j < th2 & th1 < i & th1 < th2 then continue end, 
+    if th1 < j & j < th2 & th1 < i & i < th2 then continue end, 
     r(i, j) = 1/4 * (u(i+1, j) + u(i-1, j) + u(i, j+1) + u(i, j-1)) - u(i, j);
     u(i, j) = u(i, j) + r(i, j);
   end
@@ -175,7 +175,7 @@ R = 100
 s = 1
 while R > 10^-3,
   s = s + 1
-  [u, R] = get_R_2(u, n, 18, 36);
+  [u, R] = get_R_2(u, n, 18, 34);
 end
 s
 u(18:34, 18:34) = 0;

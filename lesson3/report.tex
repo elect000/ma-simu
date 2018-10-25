@@ -22,12 +22,12 @@
 \large 演習課題3}
 \begin{document}
 
-\maketitle
 \section{課題1}
-\label{sec:orgf1d1caa}
+
+\label{sec:org79d9556}
 ガウス・ザイデル法によって求めるプログラムを次に示す手順に従って作成せよ。\\
 \subsection{\(n = 5\) とし、初期値を \(u_{i, j} = 0(1 \leq i, j \leq n)\) とした、ガウス・ザイデル法の反復1ステップ飲みのプログラムを以下に示す。プログラム内の空欄 (a), (b), (c) に入るコードを示せ。}
-\label{sec:org8158451}
+\label{sec:orgfe8f55b}
 \begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
 n = 5;
 u = zeros(n+2, n+2); // initialize
@@ -40,7 +40,7 @@ for i = 2:n+1,
 end
 \end{minted}
 \subsection{\(R\leq 10^-2\) となるまで反復計算を行い、反復終了時の \(u_{i, j}\) の値を求めよ。}
-\label{sec:orga8b05f3}
+\label{sec:org7433bb9}
 \begin{eqnarray*}
 R = \max_{1 \leq i, j \leq n} |r_{i, j}|
 \end{eqnarray*}
@@ -82,7 +82,7 @@ u
 \end{array} \right)    
 \end{eqnarray*}
 \subsection{\(n = 50\) として,ガウス・ザイデル法を実行せよ.}
-\label{sec:org403e795}
+\label{sec:org147770f}
 反復は \(R \leq 10^{-3}\) となったところで停止せよ.\\
 　このときの反復ごとの R の値をグラフに示せ.\\
 Rの値に対する片対数グラフを採用した。\\
@@ -107,7 +107,7 @@ plot2d('nl', R_)
 \caption{Rの値のグラフ}
 \end{figure}
 \subsection{(1-3) の反復終了時の \(u_{i,j} (0 \leq i, j \leq n + 1)\) の値を Scilab の surf 関数を用いてグラフに描け.}
-\label{sec:org030b0e4}
+\label{sec:org1d6c916}
 surf の使用方法は各自で調べること.\\
 \begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
 surf(linspace(0, 1, 51), linspace(0, 1, 51), u)
@@ -118,9 +118,9 @@ surf(linspace(0, 1, 51), linspace(0, 1, 51), u)
 \caption{u の値のグラフ}
 \end{figure}
 \section{課題2}
-\label{sec:orgaa5717a}
+\label{sec:orgfd450ea}
 \subsection{}
-\label{sec:orgde6ac2d}
+\label{sec:orgd65e0d8}
 領域 Ω を \([0, 1] \times [0, 1]\) の正方形とし,その境界を Γ とする.関数 \(u(x, y)\) は領域 Ω上で\\
 \begin{eqnarray*}
 u_{xx} + u_{yy} = 0
@@ -152,7 +152,7 @@ surf(linspace(0, 1, 52), linspace(0, 1, 52), u')
 \caption{u の値のグラフ}
 \end{figure}
 \subsection{}
-\label{sec:orgd2415a0}
+\label{sec:org1844e6c}
 関数 \(u(x, y)\) は領域 Ω上で\\
 \begin{eqnarray*}
 u_{xx} + u_{yy} = 0
@@ -170,7 +170,7 @@ function [u, R] = get_R_2(u, n, th1, th2)
 r = zeros(n+2, n+2)
 for i = 2:n+1,
   for j = 2:n+1,
-    if th1 < j & j < th2 & th1 < i & th1 < th2 then continue end, 
+    if th1 < j & j < th2 & th1 < i & i < th2 then continue end, 
     r(i, j) = 1/4 * (u(i+1, j) + u(i-1, j) + u(i, j+1) + u(i, j-1)) - u(i, j);
     u(i, j) = u(i, j) + r(i, j);
   end
@@ -191,7 +191,7 @@ R = 100
 s = 1
 while R > 10^-3,
   s = s + 1
-  [u, R] = get_R_2(u, n, 18, 36);
+  [u, R] = get_R_2(u, n, 18, 34);
 end
 s
 u(18:34, 18:34) = 0;
