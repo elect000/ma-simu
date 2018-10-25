@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  19 OCT 2018 10:11
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018/Arch Linux) (preloaded format=platex 2018.10.4)  25 OCT 2018 15:52
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -375,9 +375,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -S default -f latex -P commandprefix=PYG > _minted-report/
+default-pyg-prefix.pygstyle)...executed.
+
 
 (./_minted-report/default-pyg-prefix.pygstyle)
+runsystem(pygmentize -S default -f latex -P commandprefix=PYGdefault > _minted-
+report/default.pygstyle)...executed.
+
+
 (./_minted-report/default.pygstyle)
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/2253F26A5FFEB76A9D171915B20823FB5BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
+
+
 (./_minted-report/2253F26A5FFEB76A9D171915B20823FB5BE65D59CE54B8D0CE073EB7B9E5B
 63F.pygtex
 
@@ -397,10 +409,18 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 )
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/642796FA96AE4B3909483364BFA5AB175BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
+
 
 (./_minted-report/642796FA96AE4B3909483364BFA5AB175BE65D59CE54B8D0CE073EB7B9E5B
 63F.pygtex)
 \openout3 = `report.pyg'.
+
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/07B37A01FBFE3D38376187393A208D5D5BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
 
 
 (./_minted-report/07B37A01FBFE3D38376187393A208D5D5BE65D59CE54B8D0CE073EB7B9E5B
@@ -416,12 +436,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ])
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/620F6A7D573E58AE6D92E7CD1A1F98105BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
+
 
 (./_minted-report/620F6A7D573E58AE6D92E7CD1A1F98105BE65D59CE54B8D0CE073EB7B9E5B
 63F.pygtex)
 File: ./1-3.png Graphic file (type bmp)
 <./1-3.png>
 \openout3 = `report.pyg'.
+
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/ED9C1227CF0B0AC06F6089EB179156735BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
 
 
 (./_minted-report/ED9C1227CF0B0AC06F6089EB179156735BE65D59CE54B8D0CE073EB7B9E5B
@@ -436,6 +464,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: ./1-4.png Graphic file (type bmp)
 <./1-4.png>
 \openout3 = `report.pyg'.
+
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/1FCD165D6B6F6D7F8F4681E98019D08E5BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
 
 
 (./_minted-report/1FCD165D6B6F6D7F8F4681E98019D08E5BE65D59CE54B8D0CE073EB7B9E5B
@@ -459,10 +491,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [4]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/1DE380953CDDA3429F174C2A6DD50FB05BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
+
 
 (./_minted-report/1DE380953CDDA3429F174C2A6DD50FB05BE65D59CE54B8D0CE073EB7B9E5B
 63F.pygtex)
 \openout3 = `report.pyg'.
+
+runsystem(pygmentize -l scilab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-report/7BF1A7B9F5953EC3572D4E4168E74DCE5BE65D59CE54B8D0CE073EB7B9E5B63F.
+pygtex report.pyg)...executed.
 
 
 (./_minted-report/7BF1A7B9F5953EC3572D4E4168E74DCE5BE65D59CE54B8D0CE073EB7B9E5B
