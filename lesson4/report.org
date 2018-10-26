@@ -1,0 +1,304 @@
+#+TITLE: 数理アルゴリズムとシミュレーション
+#+SUBTITLE: 演習課題3
+#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
+# This is a Bibtex reference
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
+#+DATE: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
+#+LATEX_CLASS: ma-simu
+#+LATEX_CLASS_OPTIONS: 
+#+LaTeX_CLASS_OPTIONS:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+STARTUP: indent overview inlineimages
+
+* 課題1
+** 
+行列をAを正定値行列対称行列とし、$\bm{x}x^\star$ を $A\bm{x} = \bm{b}$ の解とする。関数 $f(x)$ を
+\begin{eqnarray*}
+f(\bm{x}) = 1/2 (\bm{x}, A\bm{x}) - (\bm{x}, \bm{b}) 
+\end{eqnarray*} 
+として、以下の課題を行うこと。
+*** ベクトル $\bm{h}$ は零ベクトルでないとする。このとき、以下の不等式を示せ。
+
+\begin{eqnarray*}
+f(\bm{x} + \bm{h}) > f(\bm{x}^\star)  
+\end{eqnarray*}
+\newline
+\begin{eqnarray*}
+f(\bm{x} + \bm{h}) - f(\bm{x}^\star)& \\
+&=& 1/2 (\bm{x}^\star + \bm{h},  A(\bm{x}^\star + \bm{h})) - (\bm{x}^\star + \bm{h}, \bm{b}) -1/2 (\bm{x}^\star, A\bm{x}^\star) + (\bm{x}^\star , \bm{b})\\
+&=& 1/2 (\bm{x}^\star,  A\bm{h}) + 1/2 (\bm{h},  A\bm{x}^\star) + 1/2 (\bm{h},  A\bm{h}) - (\bm{h},  A\bm{x}^\star) \\
+&=& 1/2 (\bm{h}, A\bm{x}^\star) + 1/2 (\bm{h},  A\bm{x}^\star) + 1/2 (\bm{h},  A\bm{h}) - (\bm{h},  A\bm{x}^\star) \\
+&=& 1/2 (\bm{h},  A\bm{h}) > 0
+\end{eqnarray*}
+　よって
+\begin{eqnarray*}
+f(\bm{x} + \bm{h}) > f(\bm{x}^\star)  
+\end{eqnarray*}
+*** ベクトル $\bm{x}_k+1$ は $\bm{x}_{k+1} = \bm{x}_k + \alpha_k \bm{p}_k$ で与えられるとする。このとき
+\begin{eqnarray*}
+f(\bm{x}_{k+1}) = 1/2 \alpha_k^2(\bm{p}_k, A\bm{p}_k) - \alpha(\bm{p}_k, \bm{r}_k) + f(\bm{x}_k)
+\end{eqnarray*}
+となることを示せ。ここで、$\bm{r}_k = \bm{b} - A\bm{x}_k$ である。
+\begin{eqnarray*}
+f(\bm{x}_{k+1}) - f(\bm{x}_{k})& \\
+&=& f(\bm{x}_k + \alpha_k \bm{p}_k) - f(\bm{x}_k)\\
+&=& 1/2(\bm{x}_k + \alpha_k \bm{p}_k, A(\bm{x}_k + \alpha_k \bm{p}_k)) - (\bm{x}_k + \alpha_k \bm{p}_k, \bm{b}) - 1/2(\bm{x}_k, A\bm{x}_k) + (\bm{x}_k, \bm{b})\\
+&=& 1/2 \alpha_k (\bm{x}_k, A  \bm{p}_k) + 1/2 \alpha_k (\bm{p}_k , A \bm{x}_k) + 1/2 \alpha_k^2 (\bm{p}_k , A \bm{p}_k)- \alpha_k (\bm{p}_k, \bm{r}_k + A\bm{x}_k) \\ 
+&=& 1/2 \alpha_k (\bm{p}_k, A \bm{x}_k ) + 1/2 \alpha_k (\bm{p}_k , A \bm{x}_k) + 1/2 \alpha_k^2 (\bm{p}_k , A \bm{p}_k)- \alpha_k (\bm{p}_k, \bm{r}_k ) - \alpha_k (\bm{p}_k, A\bm{x}_k)\\ 
+&=&  1/2 \alpha_k^2 (\bm{p}_k , A \bm{p}_k)- \alpha_k (\bm{p}_k, \bm{r}_k )\\ 
+\end{eqnarray*}
+　よって
+\begin{eqnarray*}
+f(\bm{x}_{k+1}) = 1/2 \alpha_k^2(\bm{p}_k, a\bm{p}_k) - \alpha(\bm{p}_k, \bm{r}_k) + f(\bm{x}_k)
+\end{eqnarray*}
+** CG 法は以下の漸化式で構成される.このとき,行列 $A$ は正定値対称行列とする.
+\begin{eqnarray}
+\bm{x}_{k+1} &=& \bm{x}_k + \alpha_k \bm{p}_k \notag\\
+\bm{r}_{k+1} &=& \bm{r}_k - \alpha_k A\bm{p}_k \notag\\
+\bm{p}_{k+1} &=& \bm{r}_{k+1} + \beta_k \bm{p}_k
+\end{eqnarray}
+*** 以下の関数を最小化するように係数 $\alpha_k$ を設定する. $\alpha_k$ の導出過程を示せ.
+\begin{eqnarray*}
+f(\bm{x}_{k+1}) = 1/2 \alpha_k^2(\bm{p}_k, A\bm{p}_k) - \alpha_k (\bm{p}_k, \bm{r}_k) + f(\bm{x}_k)
+\end{eqnarray*}
+
+　両辺を微分して、
+\begin{eqnarray*}
+\frac{\partial}{\partial \alpha_k} f(\bm{x}_k) = \alpha_k (\bm{p}_k, A\bm{p}_k) - (\bm{p}_k, \bm{r}_k)
+\end{eqnarray*}
+\begin{eqnarray*}
+\alpha_k = 
+\frac{(\bm{p}_k, \bm{r}_k)}{(\bm{p}_k, A\bm{p}_k)}
+\end{eqnarray*}
+*** 式 (1) から $\beta_k$ を求めたい. 
+$\bm{p}_i$ と $\bm{p}_j$ は互いに共役であるという条件から, $\beta_k$ を導出の過程を示せ.
+
+\begin{eqnarray*}
+(\bm{p}_{k+1}, A\bm{p}_k) &=& (\bm{r}_{k+1} + \beta_k \bm{p}_k, A\bm{p}_k) \\
+&=& (\bm{r}_{k+1}, A\bm{p}_k) + \beta_k (\bm{p}_k, A\bm{p}_k)\\
+&=& 0
+\end{eqnarray*}
+\begin{eqnarray*}
+\beta_k = 
+- \frac{(\bm{r}_{k+1}, A\bm{p}_k)}{(\bm{p}_k, A\bm{p}_k)}
+
+\end{eqnarray*}
+* 課題2
+ラプラス方程式の差分近似の式から, $n = 3$ のときの連立一次方程式の係数行列 $A$ および右辺ベクトル $b$ を図 1 を参考に作成し, $A$, $b$ の各要素をレポートに示せ.
+\begin{eqnarray*}
+4 u_{1,1} - (u_{2,1} + u_{0,1} + u_{1, 2} + u_{1, 0}) &=& 0 \\
+4 u_{1,2} - (u_{2,2} + u_{0,2} + u_{1, 3} + u_{1, 1}) &=& 0 \\
+4 u_{1,3} - (u_{2,3} + u_{0,3} + u_{1, 4} + u_{1, 2}) &=& 0 \\
+4 u_{2,1} - (u_{3,1} + u_{1,1} + u_{2, 2} + u_{2, 0}) &=& 0 \\
+4 u_{2,2} - (u_{3,2} + u_{1,2} + u_{2, 3} + u_{2, 1}) &=& 0 \\
+4 u_{2,3} - (u_{3,3} + u_{1,3} + u_{2, 4} + u_{2, 2}) &=& 0 \\
+4 u_{3,1} - (u_{4,1} + u_{2,1} + u_{3, 2} + u_{3, 0}) &=& 0 \\
+4 u_{3,2} - (u_{4,2} + u_{2,2} + u_{3, 3} + u_{3, 1}) &=& 0 \\
+4 u_{3,3} - (u_{4,3} + u_{2,3} + u_{3, 4} + u_{3, 2}) &=& 0 \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+4 u_{1,1} - (u_{2,1}           + u_{1, 2}           ) &=& u_{0,1} + u_{1, 0}\\
+4 u_{1,2} - (u_{2,2}           + u_{1, 3} + u_{1, 1}) &=& u_{0,2} \\
+4 u_{1,3} - (u_{2,3}           + u_{1, 4} + u_{1, 2}) &=& u_{0,3} \\
+4 u_{2,1} - (u_{3,1} + u_{1,1} + u_{2, 2}           ) &=& u_{2, 0} \\
+4 u_{2,2} - (u_{3,2} + u_{1,2} + u_{2, 3} + u_{2, 1}) &=& 0 \\
+4 u_{2,3} - (u_{3,3} + u_{1,3}            + u_{2, 2}) &=& u_{2, 4} \\
+4 u_{3,1} - (          u_{2,1} + u_{3, 2}           ) &=& u_{4,1} + u_{3, 0} \\
+4 u_{3,2} - (          u_{2,2} + u_{3, 3} + u_{3, 1}) &=& u_{4,2} \\
+4 u_{3,3} - (          u_{2,3}            + u_{3, 2}) &=& u_{4,3} + u_{3, 4}\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\left(
+\begin{array}{ccccccccc}
+4 & -1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+-1 & 4 & -1 & 0 & -1 & 0 & 0 & 0 & 0 \\
+0 & -1 & 4 & 0 & 0 & -1 & 0 & 0 & 0 \\
+-1 & 0 & 0 & 4 & -1 & 0 & -1 & 0 & 0 \\
+0 & -1 & 0 & -1 & 4 & -1 & 0 & -1 & 0 \\
+0 & 0 & -1 & 0 & -1 & 4 & 0 & 0 & -1 \\
+0 & 0 & 0 & -1 & 0 & 0 & 4 & -1 & 0 \\
+0 & 0 & 0 & 0 & 0 & -1 & 0 & -1 & 4 \\
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+u_{1,1} \\
+u_{1,2} \\
+u_{1,3} \\
+u_{2,1} \\
+u_{2,2} \\
+u_{2,3} \\
+u_{3,1} \\
+u_{3,2} \\
+u_{3,3} \\
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+
+u_{0,1} + u_{1, 0}\\
+u_{0,2} \\          
+u_{0,3} \\          
+u_{2, 0} \\         
+0 \\                
+u_{2, 4} \\         
+u_{4,1} + u_{3, 0} \\
+u_{4,2} \\          
+u_{4,3} + u_{3, 4}\\
+\end{array}
+\right)
+\end{eqnarray*}
+\begin{eqnarray*}
+A\bm{x} = \bm{b}
+\end{eqnarray*}
+* 課題3
+** 連立一次方程式 $A\bm{x} = \bm{b}$ を解く CG 法のプログラムを作成し,解を求めよ.
+以下が CG 法を計算するための関数である。
+#+begin_src scilab
+function [hatX, R] = cg_function(A, b)
+    size_ = size(A)(1);
+    
+    x = zeros(size_, 2);
+    r = zeros(size_, 2);
+    p = zeros(size_, 2);
+    a = zeros(1, 2);
+    be = zeros(1, 2);
+    
+    idx = 1;
+    r(:, idx) = b - A * x(:, idx);
+    p(:, idx) = r(:, idx);
+    R = zeros(1, 2)
+    R(:, idx) = 100;
+    while R(:, idx) >= 10^-4,
+        tmp_ = (A * p(:, idx))
+        a(idx) = ((p(:, idx)' * r(:, idx)) / (p(:, idx)' * tmp_));
+        x(:, idx + 1) = (x(:, idx) + (a(idx) * p(:, idx)));
+        r(:, idx + 1) = (r(:, idx) - (a(idx) * tmp_));
+        be(idx) = (-1 * ((r(:, idx + 1)' * tmp_) / (p(:, idx)' * tmp_)))
+        p(:, idx + 1) = r(:, idx + 1) + be(idx) * p(:, idx);
+        idx = idx + 1;
+        R(:, idx) = norm(r(:, idx));
+    end
+    hatX = x(:, idx);
+    R = R(2:$)
+endfunction
+#+end_src
+　実行方法は次の課題に合わせて示す。以下に実行結果を示す。
+#+CAPTION: n_4.mat 線形グラフ
+#+ATTR_LATEX: :width 10cm
+[[./3-1-1.png]]
+#+CAPTION: n_50.mat 縦軸を対数とした片対数グラフ
+#+ATTR_LATEX: :width 10cm
+[[./3-1-2.png]]
+#+CAPTION: n_200.mat 縦軸を対数とした片対数グラフ
+#+ATTR_LATEX: :width 10cm
+[[./3-1-3.png]]
+** (3-1) で求めた解 x を n 次正方行列に変換し,その要素の値を Scilab の surf 関数を用いてグラフに描け.
+以下が正方行列に変換するための関数である。
+#+begin_src scilab
+function [mat] = createSquare(x)
+    size_ = size(x)(1)^(1/2);
+    mat = zeros(size_, size_);
+    idx_ = 1;
+    for idx = 1:size_,
+      mat(:, idx) = x(idx_:idx*size_, 1)
+      idx_ = idx * size_ + 1
+    end
+endfunction
+#+end_src
+
+　実行は以下のようになる。
+#+begin_src scilab
+// n = 4
+loadmatfile('/path/to/n_4.mat')
+[X, R] = cg_function(A, b);
+plot2d(R)
+surf(createSquare(X))
+
+// n = 50
+loadmatfile('/path/to/n_50.mat')
+[X, R] = cg_function(A, b);
+plot2d('nl', R)
+surf(createSquare(X))
+
+// n = 200
+loadmatfile('/path/to/n_200.mat')
+[X, R] = cg_function(A, b);
+plot2d('nl', R)
+surf(createSquare(X))
+#+end_src
+
+
+#+CAPTION: n_4.mat
+#+ATTR_LATEX: :width 10cm
+[[./3-2-1.png]]
+#+CAPTION: n_50.mat
+#+ATTR_LATEX: :width 10cm
+[[./3-2-2.png]]
+#+CAPTION: n_200.mat
+#+ATTR_LATEX: :width 10cm
+[[./3-2-3.png]]
+* 課題4 
+CG 法を用いてソースコード 1 で生成される行列 A と乱数ベクトル b からなる連立一次方程式を解け.このとき,収束条件は $r_k$ の 2 ノルムが $10^−8$ より小さくなった時とする.また,行列サイズ n を n = 10, 11, . . . , 100 の間で変更し,収束までの反復回数をグラフに描画せよ.
+
+　以下が新しい CG 法を解くための関数である。以前のそれとの変更点は、収束条件が $10^-8$ になっている点である。
+#+begin_src scilab
+function [hatX, R] = cg_function2(A, b)
+    size_ = size(A)(1);
+    
+    x = zeros(size_, 2);
+    r = zeros(size_, 2);
+    p = zeros(size_, 2);
+    a = zeros(1, 2);
+    be = zeros(1, 2);
+    
+    idx = 1;
+    r(:, idx) = b - A * x(:, idx);
+    p(:, idx) = r(:, idx);
+    R = zeros(1, 2)
+    R(:, idx) = 100;
+    while R(:, idx) >= 10^-8,
+        tmp_ = (A * p(:, idx))
+        a(idx) = ((p(:, idx)' * r(:, idx)) / (p(:, idx)' * tmp_));
+        x(:, idx + 1) = (x(:, idx) + (a(idx) * p(:, idx)));
+        r(:, idx + 1) = (r(:, idx) - (a(idx) * tmp_));
+        be(idx) = (-1 * ((r(:, idx + 1)' * tmp_) / (p(:, idx)' * tmp_)))
+        p(:, idx + 1) = r(:, idx + 1) + be(idx) * p(:, idx);
+        idx = idx + 1;
+        R(:, idx) = norm(r(:, idx));
+    end
+    hatX = x(:, idx);
+    R = R(2:$)
+endfunction
+#+end_src
+
+　以下が実行である。
+#+begin_src scilab
+l = zeros(1, 1);
+idx = 1
+for n = 10:100,
+    A = rand(n,n);
+    A = (A + A')/2;
+    A = A + 5* eye(n,n);
+    b = rand(n,1);
+    [X, R] = cg_function2(A, b);
+    l(:, idx) = size(R)(2);
+    idx = idx + 1;
+end 
+plot2d(linspace(10,  100, 91), l)
+#+end_src
+#+CAPTION: 収束までの反復回数
+#+ATTR_LATEX: :width 10cm
+[[./4.png]]
