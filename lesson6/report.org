@@ -1,0 +1,130 @@
+#+begin_src scilab
+A = [2, 1, 0; 1, 2, 1; 0, 1, 2]
+x_0 = [1; 1; 1]
+
+function [x, lambda] = powerMethod(x_0, A)
+    x = x_0
+    while 1==1 do
+        w = A * x
+        x = w / norm(w)
+        lambda = (x' * (A * x)) / (x' * x)
+        if 10^-5 > norm(A * x - lambda * x) then break end
+    end
+endfunction
+
+
+[x, lambda] = powerMethod(x_0, A)
+#+end_src
+
+
+#+begin_src
+--> [x, lambda] = powerMethod(x_0, A)
+ lambda  = 
+
+   3.4142136
+
+ x  = 
+
+   0.5000004
+   0.7071063
+   0.5000004
+#+end_src
+
+#+begin_src scilab
+A = diag(repmat(3, 100, 1), 0) ..
+ + diag(repmat(2, 99, 1), 1) + diag(repmat(2, 99, 1), -1) ..
+ + diag(repmat(1, 98, 1), 2) + diag(repmat(1, 98, 1), -2);
+
+x_0 = repmat(1, 100, 1);
+
+[x, lambda] = powerMethod(x_0, A);
+lambda
+#+end_src
+
+#+begin_src scilab
+
+--> lambda
+ lambda  = 
+
+   8.9942446
+#+end_src
+
+#+begin_src scilab
+A = [1, 1, 1, 1; 1, 2, 2, 2; 1, 2, 3, 3; 1, 2, 3, 4]
+#+end_src
+
+#+begin_src scilab
+function [lambda, x, Rs] = invIterationMethod(x_0, A)
+x = x_0;
+count = 1
+Rs = zeros(1, 1)
+while 1 == 1 do
+  w = inv(A) * x
+  x = w / norm(w)
+  lambda = (x' * (A*x)) / (x' * x)
+  r = norm(A * x - lambda * x)
+  Rs(1, count) = r
+  count = count + 1
+  if r <= 10^-5 then break end
+  end
+endfunction
+#+end_src
+
+#+begin_src scilab
+x = repmat(1, 4, 1)
+#+end_src
+
+#+begin_src scilab
+--> [lambda, x, Rs] = invIterationMethod(x, A);
+--> lambda
+--> x
+ lambda  = 
+
+   0.2831186
+ x  = 
+
+   0.4285619
+  -0.6565513
+   0.5773179
+  -0.2279894
+
+#+end_src
+
+#+begin_src scilab
+function [count, lambda] = shiftInvIterationMethod(sig, A, x_0)
+x = x_0;
+I_ = eye(size(A)(1), size(A)(2));
+count = 1
+while 1==1 do
+    w = inv(sig * I_ - A) * x;
+    x = w / norm(w);
+    lambda = (x' * (A * x)) / (x' * x);
+    r = norm(A * x - lambda * x);
+    if r <= 10^-5 then break end
+    count = count + 1;
+end
+endfunction
+#+end_src
+
+#+begin_src scilab
+A = diag(repmat(3, 100, 1), 0) ..
+ + diag(repmat(2, 99, 1), 1) + diag(repmat(2, 99, 1), -1) ..
+ + diag(repmat(1, 98, 1), 2) + diag(repmat(1, 98, 1), -2);
+
+x_0 = repmat(1, 100, 1);
+
+
+Idxs = linspace(2.0, 3.0, 101);
+Cs = zeros(1, 1)
+Ls = zeros(1, 1)
+Count = 1
+for c = Idxs,
+    [count, lambda] = shiftInvIterationMethod(c, A, x_0)
+    Cs(1, Count) = count
+    Ls(1, Count) = lambda 
+    Count = Count + 1
+end
+
+plot2d(Cs, Idxs)
+plot2d(Ls, Idxs)
+#+end_src

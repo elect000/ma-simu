@@ -90,8 +90,37 @@ alpha = 0.85;
 #+end_src
 
 #+begin_src scilab
-load('matrixP.sci')
-alpha = 0.85
-[R, count, x] = mypagerank(P)
-
+load('matrixP.sci');
+alpha = 0.85;
+[R, count, x] = mypagerank(P, alpha);
+plot2d('nl',R);
 #+end_src
+
+#+begin_src scilab
+[k, l] = gsort(x);
+l(1:3)
+#+end_src
+
+#+begin_src
+--> l(1:3)
+ ans  =
+
+   601.
+   802.
+   662.
+#+end_src
+
+#+begin_src scilab
+
+alphas = linspace(0.5, 0.95, 19)
+Rs = zeros(1, 1)
+c = 1
+for alpha = alphas,
+    alpha
+    [R, count, x] = mypagerank(P, alpha);
+    Rs(1, c) = count;
+    c = c + 1;
+end
+plot2d(Rs)
+#+end_src
+

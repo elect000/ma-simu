@@ -1,0 +1,154 @@
+#+begin_src scilab
+A = [1, 1; 1, 2; 1, 3]
+#+end_src
+
+#+begin_src scilab
+--> [u, s, v] = svd(A)
+ v  = 
+
+  -0.4026632   0.9153482
+  -0.9153482  -0.4026632
+
+ s  = 
+
+   4.0791433   0.       
+   0.          0.6004912
+   0.          0.       
+
+ u  = 
+
+  -0.3231099   0.8537759   0.4082483
+  -0.547507    0.1832195  -0.8164966
+  -0.7719042  -0.4873369   0.4082483
+#+end_src
+
+#+begin_src scilab
+--> [alpha, lambda] =  spec(A' * A)
+ lambda  = 
+
+   0.3605897   0.      
+   0.          16.63941
+
+ alpha  = 
+
+  -0.9153482   0.4026632
+   0.4026632   0.9153482
+#+end_src 
+
+#+begin_src scilab
+--> [alpha, lambda] =  spec(A * A')
+ lambda  = 
+
+   4.007D-16   0.          0.      
+   0.          0.3605897   0.      
+   0.          0.          16.63941
+
+ alpha  = 
+
+  -0.4082483  -0.8537759   0.3231099
+   0.8164966  -0.1832195   0.547507 
+  -0.4082483   0.4873369   0.7719042
+#+end_src
+
+#+begin_src scilab
+A = zeros(100, 10);
+for i = 1:100,
+    for j = 1:10,
+        A(i, j) = abs(i - j + 1);
+    end
+end
+#+end_src
+
+#+begin_src scilab
+--> [x, lambda] = powerMethod(ones(10, 1), A' * A)
+ lambda  = 
+
+   2955489.2
+
+ x  = 
+
+   0.3381319
+   0.3331766
+   0.3282291
+   0.323288
+   0.3183525
+   0.3134223
+   0.3084975
+   0.3035786
+   0.2986665
+   0.2937626
+--> [x, lambda] = invIterationMethod(ones(10, 1), A' * A)
+ lambda  = 
+
+  -0.0482548
+   0.1742716
+  -0.3094935
+   0.4050188
+  -0.4560623
+   0.4559215
+  -0.4046269
+   0.308948
+  -0.1736266
+   0.0479496
+
+ x  = 
+
+   0.2646018
+
+#+end_src
+
+#+begin_src scilab
+[lambda, pf, pc] = pca([X- mean(X), Y - mean(Y)])
+clf()
+scatter(X, Y);
+plot2d([0, pf(1, 1)*8], [0, pf(2, 1)*8])
+plot2d([0, pf(1, 2)*8], [0, pf(2, 2)*8])
+#+end_src 
+
+#+begin_src scilab
+rand("seed",20181109);
+U1 = rand(100,10);
+V1 = rand(70, 10);
+U2 = rand(100, 40);
+V2 = rand(70, 40);
+A = U1*V1' + 1.0E-5*U2*V2' + 1.0E-10*rand(100,70);
+#+end_src
+
+#+begin_src scilab
+[U, S, V] = svd(A);
+#+end_src
+
+#+begin_src scilab
+function [fnorm] = getFNorm(A, k)
+  fnorm = 0
+  Ak = zeros(size(A)(1), size(A)(2));
+  for i=1:k,
+    Ak = Ak + S(i, i) * U(1:$, i) * V(1:$, i)'
+  end
+  for i=1:size(A)(1),
+    for j=1:size(A)(2),
+      fnorm = fnorm + (A(i, j) - Ak(i, j))^2
+    end
+  end
+  fnorm = fnorm ^ (1/2)
+endfunction
+#+end_src
+
+#+begin_src scilab
+fnorms = zeros(1, 1)
+for k = 1:70,
+  fnorms(1, k) = getFNorm(A, k);
+end
+plot2d('nl', fnorms)
+#+end_src
+
+#+begin_src scilab
+fnorms_ = zeros(1, 70)
+for k = 1:size(A)(2) - 1,
+  for l = k+1:size(A)(2),
+    fnorms_(1, k) = fnorms_(1, k) + S(l, l)^2;
+  end
+  fnorms_(1, k) = fnorms_(1, k)^(1/2)
+end
+plot2d('nl', fnorms_)
+#+end_src
