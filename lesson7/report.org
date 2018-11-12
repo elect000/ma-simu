@@ -115,11 +115,8 @@ A = U1*V1' + 1.0E-5*U2*V2' + 1.0E-10*rand(100,70);
 #+end_src
 
 #+begin_src scilab
-[U, S, V] = svd(A);
-#+end_src
-
-#+begin_src scilab
 function [fnorm] = getFNorm(A, k)
+  [U, S, V] = svd(A);
   fnorm = 0
   Ak = zeros(size(A)(1), size(A)(2));
   for i=1:k,
@@ -143,12 +140,13 @@ plot2d('nl', fnorms)
 #+end_src
 
 #+begin_src scilab
-fnorms_ = zeros(1, 70)
+fnorms_ = zeros(1, 70);
+[U, S, V] = svd(A);
 for k = 1:size(A)(2) - 1,
   for l = k+1:size(A)(2),
     fnorms_(1, k) = fnorms_(1, k) + S(l, l)^2;
   end
-  fnorms_(1, k) = fnorms_(1, k)^(1/2)
+  fnorms_(1, k) = fnorms_(1, k)^(1/2);
 end
 plot2d('nl', fnorms_)
 #+end_src
