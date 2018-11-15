@@ -1,152 +1,354 @@
-#+begin_src scilab
-A = [1, 1; 1, 2; 1, 3]
-#+end_src
+#+TITLE: 数理アルゴリズムとシミュレーション
+#+SUBTITLE: 演習課題3
+#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
+# This is a Bibtex reference
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
+#+DATE: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
+#+LATEX_CLASS: ma-simu
+#+LATEX_CLASS_OPTIONS: 
+#+LaTeX_CLASS_OPTIONS:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+STARTUP: indent overview inlineimages
 
-#+begin_src scilab
---> [u, s, v] = svd(A)
- v  = 
+* 課題1
+行列 $A \in \mathbb{R}^{m \times n}$ の特異値分解を
+\begin{eqnarray*}
+A = U \Sigma V^T ,\ U^T U = U U^T = I,\ V^T V = V V^T = I
+\end{eqnarray*}
+　とし、 $U \in \mathbb{R}^{m \times m}$ の列ベクトルを左特異ベクトル、 $V \in \mathbb{R}^{n\times n}$ の列ベクトルを右特異ベクトル、 $\Sigma \in \mathbb{R}^{m \times n}$ の対角要素を特異値とする。このとき、以下の問いに答えよ。
 
-  -0.4026632   0.9153482
-  -0.9153482  -0.4026632
+\begin{eqnarray*}
+\Sigma = \left(
+\begin{array}{ccccc}
+\lambda_1& 0 & \cdots & \cdots & 0 \\
+0 & \lambda_2 & 0 & \cdots & 0 \\
+\vdots &  & \ddots & &  \\
+0 &  & \cdots & &
+\end{array}
+\right)
+\end{eqnarray*}
+　とする。
+** 
+    $AA^T$ , $A^T A$ の固有ベクトルが A の左特異ベクトル、右特異ベルトルとそれぞれ一致することを示せ。
 
- s  = 
+\begin{eqnarray*}
+AA^T &=& U \Sigma V^T V \Sigma^T U^T \\
+ &=& U \Sigma^2 U^T \\
+\Leftrightarrow (AA^T)U &=& U \Sigma^2  
+\end{eqnarray*}  
+  　つまり、
+\begin{eqnarray*}
+(AA^T)\bm{u}_i = \lambda^2_i \bm{u}_i \ \ \ U = [\bm{u}_1, \bm{u}_2, \dots , \bm{u}_m]
+\end{eqnarray*}
+　であるから、固有ベクトルが左特異ベクトルと一致していることがわかる。
 
-   4.0791433   0.       
-   0.          0.6004912
-   0.          0.       
+　同様に、
+\begin{eqnarray*}
+A^TA &=& V \Sigma^T U^T U \Sigma V^T \\
+&=& V \Sigma^2 V^T  \\
+\Leftrightarrow (A^TA) V &=& V \Sigma^2
+\end{eqnarray*}
+\begin{eqnarray*}
+(AA^T)\bm{v}_i = \lambda^2_i \bm{v}_i \ \ \ V = [\bm{v}_1, \bm{v}_2, \dots , \bm{v}_n]
+\end{eqnarray*}
+　であるから、固有ベクトルが右特異ベクトルと一致していることがわかる。
 
- u  = 
 
-  -0.3231099   0.8537759   0.4082483
-  -0.547507    0.1832195  -0.8164966
-  -0.7719042  -0.4873369   0.4082483
-#+end_src
+**  [#A] 
+   行列 $A \in \mathbb{R}^{n\times n}$ の特異値を $\sigma_i,\ i = 1, 2, \dots , n$ とする。このとき、 2n次行列
+\begin{eqnarray*}
+\left(
+\begin{array}{cc}
+\bm{0} & A^H \\
+A & \bm{0}
+\end{array}
+\right)
+\end{eqnarray*}
+　の固有値は $\pm \sigma_1,\ \pm \sigma_2, \ \dots , \ \pm \sigma_n$ であることを示せ。
 
-#+begin_src scilab
---> [alpha, lambda] =  spec(A' * A)
- lambda  = 
+　問題設定より、
+\begin{eqnarray*}
+A &=& U \Sigma V^T \\
+A^H = A^T &=& V \Sigma U^T \\
+A V &=& U \Sigma\\ 
+A^T U &=& V \Sigma 
+\end{eqnarray*}
+　であるから、
+\begin{eqnarray*}
+\left(
+\begin{array}{cc}
+0&A^T \\ A& 0
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+V & -V\\
+U & U
+\end{array}
+\right) &=& 
+\left(
+\begin{array}{cc}
+A^T U & A^T U\\ A V & - A V
+\end{array}
+\right) \\
+&=& 
+\left(
+\begin{array}{cc}
+V\Sigma & V\Sigma\\ U\Sigma & -U\Sigma
+\end{array}
+\right)\\
+&=&
+\left(
+\begin{array}{cc}
+V & V \\ U & -U
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+\Sigma & 0\\
+0 & \Sigma
+\end{array}
+\right) \\
+&=&
+\left(
+\begin{array}{cc}
+V & -V \\ U & U
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+\Sigma & 0\\
+0 & -\Sigma
+\end{array}
+\right) \\
+\Leftrightarrow
+\left(
+\begin{array}{cc}
+0&A^T \\ A& 0
+\end{array}
+\right)
+&=& 
+\left(
+\begin{array}{cc}
+V & -V \\ U & U
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+\Sigma & 0\\
+0 & -\Sigma
+\end{array}
+\right) 
+\left(
+\begin{array}{cc}
+V & -V\\
+U & U
+\end{array}
+\right)^{-1}
+\end{eqnarray*}
+　よって固有値は $\pm \sigma_1,\ \pm \sigma_2, \ \dots , \ \pm \sigma_n$ である。
+* 課題2
+** 
+   *spec(A' * A)*, *spec(A * A')* で求めた固有値、固有ベクトルと、 *svd(A)* で求めた特異値、左特異ベクトル、右特異ベクトルを比較して考察せよ。
 
-   0.3605897   0.      
-   0.          16.63941
+　行列A
+ #+begin_src scilab
+ A = [1, 1; 1, 2; 1, 3]
+ #+end_src
 
- alpha  = 
+　特異値分解
+ #+begin_src scilab
+ --> [u, s, v] = svd(A)
+  v  = 
 
-  -0.9153482   0.4026632
-   0.4026632   0.9153482
-#+end_src 
+   -0.4026632   0.9153482
+   -0.9153482  -0.4026632
 
-#+begin_src scilab
---> [alpha, lambda] =  spec(A * A')
- lambda  = 
+  s  = 
 
-   4.007D-16   0.          0.      
-   0.          0.3605897   0.      
-   0.          0.          16.63941
+    4.0791433   0.       
+    0.          0.6004912
+    0.          0.       
 
- alpha  = 
+  u  = 
 
-  -0.4082483  -0.8537759   0.3231099
-   0.8164966  -0.1832195   0.547507 
-  -0.4082483   0.4873369   0.7719042
-#+end_src
+   -0.3231099   0.8537759   0.4082483
+   -0.547507    0.1832195  -0.8164966
+   -0.7719042  -0.4873369   0.4082483
+ #+end_src
 
-#+begin_src scilab
-A = zeros(100, 10);
-for i = 1:100,
-    for j = 1:10,
-        A(i, j) = abs(i - j + 1);
-    end
-end
-#+end_src
+ #+begin_src scilab
+ --> [alpha, lambda] =  spec(A' * A)
+  lambda  = 
 
-#+begin_src scilab
---> [x, lambda] = powerMethod(ones(10, 1), A' * A)
- lambda  = 
+    0.3605897   0.      
+    0.          16.63941
 
-   2955489.2
+  alpha  = 
 
- x  = 
+   -0.9153482   0.4026632
+    0.4026632   0.9153482
+ #+end_src 
 
-   0.3381319
-   0.3331766
-   0.3282291
-   0.323288
-   0.3183525
-   0.3134223
-   0.3084975
-   0.3035786
-   0.2986665
-   0.2937626
---> [x, lambda] = invIterationMethod(ones(10, 1), A' * A)
- lambda  = 
+ #+begin_src scilab
+ --> [alpha, lambda] =  spec(A * A')
+  lambda  = 
 
-  -0.0482548
-   0.1742716
-  -0.3094935
-   0.4050188
-  -0.4560623
-   0.4559215
-  -0.4046269
-   0.308948
-  -0.1736266
-   0.0479496
+    4.007D-16   0.          0.      
+    0.          0.3605897   0.      
+    0.          0.          16.63941
 
- x  = 
+  alpha  = 
 
-   0.2646018
+   -0.4082483  -0.8537759   0.3231099
+    0.8164966  -0.1832195   0.547507 
+   -0.4082483   0.4873369   0.7719042
+ #+end_src
+　特異値の２乗がおおよそ固有値になっていることがわかる。また、 *spec(A * A')* の特異ベクトルと A の右特異ベクトル、 *spec(A' * A)* の特異ベクトルに転置を取ったものと A の左特異ベクトルが非常に近い値を取っていることがわかる。
+** 
+　行列 $A = {a_{i, j}}\in \mathbb{R}^{100\times 10}$ を以下のように定義する。
+\begin{eqnarray*}
+a_{i,j} = |i - j + 1|
+\end{eqnarray*}
+　このとき、べき乗法、逆反復法を $A^T A$ に適用し、Aの最大特異値、最小固有値を求めよ。
 
-#+end_src
+ #+begin_src scilab
+ A = zeros(100, 10);
+ for i = 1:100,
+     for j = 1:10,
+         A(i, j) = abs(i - j + 1);
+     end
+ end
+ #+end_src
 
-#+begin_src scilab
-[lambda, pf, pc] = pca([X- mean(X), Y - mean(Y)])
-clf()
-scatter(X, Y);
-plot2d([0, pf(1, 1)*8], [0, pf(2, 1)*8])
-plot2d([0, pf(1, 2)*8], [0, pf(2, 2)*8])
-#+end_src 
+　順に、べき乗法、逆反復法を適用した結果である。
+ #+begin_src scilab
+ --> [x, lambda] = powerMethod(ones(10, 1), A' * A)
+  lambda  = 
 
-#+begin_src scilab
-rand("seed",20181109);
-U1 = rand(100,10);
-V1 = rand(70, 10);
-U2 = rand(100, 40);
-V2 = rand(70, 40);
-A = U1*V1' + 1.0E-5*U2*V2' + 1.0E-10*rand(100,70);
-#+end_src
+    2955489.2
 
-#+begin_src scilab
-function [fnorm] = getFNorm(A, k)
-  [U, S, V] = svd(A);
-  fnorm = 0
-  Ak = zeros(size(A)(1), size(A)(2));
-  for i=1:k,
-    Ak = Ak + S(i, i) * U(1:$, i) * V(1:$, i)'
-  end
-  for i=1:size(A)(1),
-    for j=1:size(A)(2),
-      fnorm = fnorm + (A(i, j) - Ak(i, j))^2
-    end
-  end
-  fnorm = fnorm ^ (1/2)
-endfunction
-#+end_src
+  x  = 
 
-#+begin_src scilab
-fnorms = zeros(1, 1)
-for k = 1:70,
-  fnorms(1, k) = getFNorm(A, k);
-end
-plot2d('nl', fnorms)
-#+end_src
+    0.3381319
+    0.3331766
+    0.3282291
+    0.323288
+    0.3183525
+    0.3134223
+    0.3084975
+    0.3035786
+    0.2986665
+    0.2937626
+ --> [lambda, x] = invIterationMethod(ones(10, 1), A' * A)
+  x  = 
 
-#+begin_src scilab
-fnorms_ = zeros(1, 70);
-[U, S, V] = svd(A);
-for k = 1:size(A)(2) - 1,
-  for l = k+1:size(A)(2),
-    fnorms_(1, k) = fnorms_(1, k) + S(l, l)^2;
-  end
-  fnorms_(1, k) = fnorms_(1, k)^(1/2);
-end
-plot2d('nl', fnorms_)
-#+end_src
+   -0.0482548
+    0.1742716
+   -0.3094935
+    0.4050188
+   -0.4560623
+    0.4559215
+   -0.4046269
+    0.308948
+   -0.1736266
+    0.0479496
+
+  lambda  = 
+
+    0.2646018
+
+ #+end_src
+
+* 課題3
+　主成分分析を行い、主成分方向を示した直線を加えてグラフに描画せよ。
+
+ #+begin_src scilab
+ [lambda, pf, pc] = pca([X- mean(X), Y - mean(Y)])
+ clf()
+ scatter(X, Y);
+ plot2d([0, pf(1, 1)*8], [0, pf(2, 1)*8])
+ plot2d([0, pf(1, 2)*8], [0, pf(2, 2)*8])
+ #+end_src 
+
+#+CAPTION: 主成分分析のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./3.png]]
+
+* 課題4
+** 
+　以下の Scilab プログラムで行列Aを生成する。
+ #+begin_src scilab
+ rand("seed",20181109);
+ U1 = rand(100,10);
+ V1 = rand(70, 10);
+ U2 = rand(100, 40);
+ V2 = rand(70, 40);
+ A = U1*V1' + 1.0E-5*U2*V2' + 1.0E-10*rand(100,70);
+ #+end_src
+
+　このとき、低ランク近似を $k = 1, 2, \dots n$ に対して行い、それぞれの k でのフロベニウスノルムに関する誤差 $||A - \bar(A)_k||_F$ を計算し、グラフに描画せよ。
+
+　低ランク近似を行って、フロベニウスノルムを計算するための関数
+ #+begin_src scilab
+ function [fnorm] = getFNorm(A, k)
+   [U, S, V] = svd(A);
+   fnorm = 0
+   Ak = zeros(size(A)(1), size(A)(2));
+   for i=1:k,
+     Ak = Ak + S(i, i) * U(1:$, i) * V(1:$, i)'
+   end
+   for i=1:size(A)(1),
+     for j=1:size(A)(2),
+       fnorm = fnorm + (A(i, j) - Ak(i, j))^2
+     end
+   end
+   fnorm = fnorm ^ (1/2)
+ endfunction
+ #+end_src
+
+
+ #+begin_src scilab
+ fnorms = zeros(1, 1)
+ for k = 1:70,
+   fnorms(1, k) = getFNorm(A, k);
+ end
+ plot2d('nl', fnorms)
+ #+end_src
+
+#+CAPTION: フロベニウスノルムに関する誤差のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./4-1.png]]
+
+** 
+(4-1) で計算した、それぞれの k に対するフロベニウスノルムに関する誤差 $||A - \bar{A}_k||_F$ は、
+\begin{eqnarray*}
+\sqrt{\Sigma_{l = k+1}^{n} \sigma^2_l}
+\end{eqnarray*}
+　に一致する。これを、 (4-1) で用いた行列 A で確認し、上記の値をグラフに描画せよ。
+
+
+ #+begin_src scilab
+ fnorms_ = zeros(1, 70);
+ [U, S, V] = svd(A);
+ for k = 1:size(A)(2) - 1,
+   for l = k+1:size(A)(2),
+     fnorms_(1, k) = fnorms_(1, k) + S(l, l)^2;
+   end
+   fnorms_(1, k) = fnorms_(1, k)^(1/2);
+ end
+ plot2d('nl', fnorms_)
+ #+end_src
+
+#+CAPTION: (4-2) のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./4-2.png]]
