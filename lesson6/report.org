@@ -1,16 +1,71 @@
+#+TITLE: 数理アルゴリズムとシミュレーション
+#+SUBTITLE: 演習課題3
+#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
+# This is a Bibtex reference
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
+#+DATE: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
+#+LATEX_CLASS: ma-simu
+#+LATEX_CLASS_OPTIONS: 
+#+LaTeX_CLASS_OPTIONS:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+STARTUP: indent overview inlineimages
+
 * 課題1
-**
+** 
+$\lambda$ が A の固有値のとき、 $\cfrac{1}{\lambda}$ は $A^{-1}$ の固有値である。
 $\bm{a}_{\lambda}$ は 固有値 $\lambda$ に対する固有ベクトルとする。
 \begin{eqnarray*}
 A \bm{a}_{\lambda} &=& \lambda \bm{a}_{\lambda} \\
-\bm{a}_{\lambda} &=& A^{-1} \lambda \bm{a}_{\lambda} \\
-\cfrac{1}{\lambda} \bm{a}_{\lambda} = A^{-1}\bm{a}_{\lambda}\ \because \lambda \neq 0
+\Leftrightarrow \bm{a}_{\lambda} &=& A^{-1} \lambda \bm{a}_{\lambda} \\
+\Leftrightarrow \cfrac{1}{\lambda} \bm{a}_{\lambda} &=& A^{-1}\bm{a}_{\lambda}\ \because \lambda \neq 0
+\end{eqnarray*}
+　よって $\cfrac{1}{\lambda}$ は $A^{-1}$ の固有値である。
+** 
+P を n 次の正則行列とする。このとき、Aの固有値と $P^{-1}AP$ の固有値は一致する。
+
+ $\bm{x}$ を 固有値 $\lambda$ に対する固有ベクトルとする。
+\begin{eqnarray*}
+A \bm{x} &=& \lambda \bm{x} \\
+\Leftrightarrow P A \bm{x} &=& \lambda P \bm{x} \\
+\Leftrightarrow P A P^{-1} \bm{y} &=& \lambda P P^{-1} \bm{y}\ \ \ \ \ \  \bm{x} = P^{-1} \bm{y} \\
+\Leftrightarrow P A P^{-1} \bm{y} &=& \lambda \bm{y} \ \ \ \ \ \ \because P P^{-1} = I
 \end{eqnarray*}
 
+　よって両者の固有値は一致する。
+** 
+A が実対象行列のとき、相異なる固有値に対応する固有ベクトルは互いに直交する。
+** 
+$\sigma$ を A の固有値でない複素数、Iを単位行列とする。このとき、 $\lambda$ が A の固有値ならば、 $\cfrac{1}{\sigma - \lambda}$ は $(\sigma I - A)^{-1}$ の固有値である。
+
+  $\bm{x}$ は $\lambda$ に対する固有ベクトルとする。 $\sigma$ は A の固有値ではないので、 $\sigma I - A \neq 0$ であることを利用して、 
+\begin{eqnarray*}
+A\bm{x}&=&\lambda \bm{x} \\
+\sigma \bm{x} - A \bm{x} &=& \sigma \bm{x} - \lambda \bm{x} \\
+\Leftrightarrow (\sigma I - A) \bm{x} &=& (\sigma - \lambda ) \bm{x} \\
+\Leftrightarrow \cfrac{1}{\sigma - \lambda} \bm{x} &=& (\sigma I - A)^{-1} \bm{x}
+\end{eqnarray*}
+　よって $(\sigma I - A^{-1})$ の固有値は $\cfrac{1}{\sigma - \lambda}$ である。
+* 課題２
+** 
+べき乗法の Scilab プログラムを作成し、行列Aの絶対値最大固有値 $\lambda$ とそれに対応する固有ベクトル $\bm{x}$ を求めよ。
+
+　行列 A と初期ベクトル $\bm{x}^{(0)}$  (それぞれ A, x $\_$ 0 とした)
 #+begin_src scilab
 A = [2, 1, 0; 1, 2, 1; 0, 1, 2]
 x_0 = [1; 1; 1]
+#+end_src
 
+　べき乗法の関数
+#+begin_src scilab
 function [x, lambda] = powerMethod(x_0, A)
     x = x_0
     while 1==1 do
@@ -21,12 +76,11 @@ function [x, lambda] = powerMethod(x_0, A)
     end
 endfunction
 
-
 [x, lambda] = powerMethod(x_0, A)
 #+end_src
 
-
-#+begin_src
+　最大固有値 $\lambda$ とそれに対応する近似固有ベクトル $\bm{x}^{(k)}$ (それぞれ、 lambda , x とした)
+#+begin_src scilab
 --> [x, lambda] = powerMethod(x_0, A)
  lambda  = 
 
@@ -39,17 +93,25 @@ endfunction
    0.5000004
 #+end_src
 
+** 
+　100 x 100 の五重対角行列 A に対してべき乗法を適用し、絶対値最大固有値を求めよ。
+
+　行列 A と $\bm{x}^{(0)}$ (それぞれ、A, x $\_$ 0 とした。)
 #+begin_src scilab
 A = diag(repmat(3, 100, 1), 0) ..
  + diag(repmat(2, 99, 1), 1) + diag(repmat(2, 99, 1), -1) ..
  + diag(repmat(1, 98, 1), 2) + diag(repmat(1, 98, 1), -2);
 
 x_0 = repmat(1, 100, 1);
+#+end_src
 
+　べき乗法を適用した。
+#+begin_src scilab
 [x, lambda] = powerMethod(x_0, A);
 lambda
 #+end_src
 
+　求められた最大固有値 $\lambda$
 #+begin_src scilab
 
 --> lambda
@@ -58,10 +120,15 @@ lambda
    8.9942446
 #+end_src
 
+* 課題3
+　逆反復法によって固有値・固有ベクトルを求める。
+
+　行列 A 
 #+begin_src scilab
 A = [1, 1, 1, 1; 1, 2, 2, 2; 1, 2, 3, 3; 1, 2, 3, 4]
 #+end_src
 
+　逆反復法の関数
 #+begin_src scilab
 function [lambda, x, Rs] = invIterationMethod(x_0, A)
 x = x_0;
@@ -79,10 +146,12 @@ while 1 == 1 do
 endfunction
 #+end_src
 
+ 初期ベクトル　(x とした)
 #+begin_src scilab
 x = repmat(1, 4, 1)
 #+end_src
 
+　関数の適用と、求められた近似固有値とそれに対応する近似固有ベクトル $\bm{x}^{(k)}$ (それぞれ、 lambda, x)
 #+begin_src scilab
 --> [lambda, x, Rs] = invIterationMethod(x, A);
 --> lambda
@@ -96,9 +165,22 @@ x = repmat(1, 4, 1)
   -0.6565513
    0.5773179
   -0.2279894
-
 #+end_src
 
+　反復ごとの残差の値をグラフに描画せよ。
+#+begin_src scilab
+plot2d(Rs)
+#+end_src
+#+CAPTION: 残差のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./3.png]]
+
+
+* 課題4
+** 
+シフト付き逆反復法を行い、それぞれのシフトでの反復回数をグラフに描画せよ。
+
+　シフト付き逆反復法の関数
 #+begin_src scilab
 function [count, lambda] = shiftInvIterationMethod(sig, A, x_0)
 x = x_0;
@@ -115,14 +197,17 @@ end
 endfunction
 #+end_src
 
+　(2-2) でも用いた行列と、初期ベクトル　(それぞれ A, x $\_$ 0)
 #+begin_src scilab
 A = diag(repmat(3, 100, 1), 0) ..
  + diag(repmat(2, 99, 1), 1) + diag(repmat(2, 99, 1), -1) ..
  + diag(repmat(1, 98, 1), 2) + diag(repmat(1, 98, 1), -2);
 
 x_0 = repmat(1, 100, 1);
+#+end_src
 
 
+#+begin_src scilab
 Idxs = linspace(2.0, 3.0, 101);
 Cs = zeros(1, 1)
 Ls = zeros(1, 1)
@@ -135,5 +220,18 @@ for c = Idxs,
 end
 
 plot2d(Cs, Idxs)
-plot2d(Ls, Idxs)
 #+end_src
+
+#+CAPTION: 反復回数のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./4-1.png]]
+** 
+
+#+begin_src scilab
+plot2d(Ls, Idxs)
+#+end_src 
+
+#+CAPTION: 近似固有値のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./4-2.png]]
+
