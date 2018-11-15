@@ -1,3 +1,46 @@
+* 課題1
+**
+　実対称行列 $A = A^T$ の固有値はすべて実数であることを示せ。
+
+　 $A$ に対する固有値の一つを $\lambda$ とし、これに対する固有ベクトルを $\bm{a}_{\lambda}$ とする。このとき、 $A\bm{a}_{\lambda} = \lambda \bm{a}_{\lambda}$ が成立する。
+　ここで、両辺に共役転置を取ると、 $\bar{\bm{a}_{\lambda}}^T A = \bar{\lambda} \bar{\bm{a}_{\lambda}}^T$ となる。 ($A$ が実対称行列のとき、 $\bar{A}^T = A$)
+  すると、 $\lambda \bar{\bm{a}_{\lambda}}^T \bm{a}_{\lambda} = \bar{\bm{a}_{\lambda}}^T \lambda \bm{a}_{\lambda} = \bar{\bm{a}_{\lambda}}^T A  \bm{a}_{\lambda} = \bar{\lambda} \bar{\bm{a}_{\lambda}}^T \bm{a}_{\lambda}$ となり、
+　 $(\lambda - \bar{\lambda} \bar{\bm{a}_{\lambda}} \bm{a}_{\lambda} = 0$
+　$\bm{a}_{\lambda} \neq 0 $ より、$\lambda = \bar{\lambda}$ 
+　すなわち、 $A = A^T$ 固有値はすべて実数であるといえる。
+
+**
+　 $\lambda$ は $A \in \mathbb{C}^{n \times n}$ の固有値であることと、 $det(A-\lambda I) = 0$ は等価であることを示せ。 
+
+\begin{eqnarray*}
+det(A - \lambda I) = 0 \\
+\Leftrightarrow (\lambda_1 - \lambda)(\lambda_2 - \lambda) \cdots (\lambda_n - \lambda) = 0 
+\end{eqnarray*}
+　 よってある $\lambda_i = \lambda \ i = 1, 2, \codts , n$ が成り立つので、 $\lambda$ は固有値になる。 
+
+　固有方程式をもち出なさいのであれば、
+\begin{eqnarray*}
+A \bm{x} = \lambda \bm{x} \ \ \  \bm{x} \neq 0 \\
+\Leftrightarrow (A - \lambda I) \bm{x} = 0 \\
+\Leftrightarrow det(A - \lambda I) = 0
+\end{eqnarray*}
+　よって $\lambda$ は固有値である。
+
+* 課題2
+　n 個あるページにおいて、ページ j から ページ j へジャンプする確率を $p_{i, j}$ とする。ただし、リンクが有るページはすべて等しい確率でジャンプするものとする。確率遷移行列 $P = {p_{i,j}}\in\mathb{R}^{n\times n}$ の各列の要素が1, つまり各 j に対して $\Sigma_i p_{i, j} = 1$ とする。
+**
+　図1で示される 6 ページ間のリンクを表現するような確率遷移行列 $P$ を与えよ。
+
+#+begin_src scilab
+P = [0 0 1 0 0 0,
+     0 0 0 1 0 1/2,
+     0 1/2 0 0 0 0,
+     1 1/2 0 0 0 1/2,
+     0 0 0 0 0 0,
+     0 0 0 0 1 0];
+#+end_src
+** 
+　反復式(1) を用いることで (2-1) で与えた行列 P に関するページランクベクトル $\bm{x}$ を計算せよ。
 
 #+begin_src scilab
 P = [0 0 1 0 0 0,
@@ -27,10 +70,6 @@ R = R(2:count)
 #+end_src
 
 #+begin_src scilab
-plot(R)
-#+end_src
-
-#+begin_src scilab
  x  = 
 
    0.1572052
@@ -40,6 +79,20 @@ plot(R)
    0.025
    0.04625
 #+end_src
+
+**
+　(2-2) で反復式 (1) を用いて計算された各反復での
+\begin{eqnarray*}
+\cfrec{1}{|\bm{x}^{(k)}|_2} |[\alpha P + (1 - \alpha) \bm{v} \bm{e}^T] \bm{x}^{(k)} - \bm{x}^{k}|_2 
+\end{eqnarray*}
+　の値をグラフに描け。
+
+#+begin_src scilab
+plot(R)
+#+end_src
+
+**
+　(2-2) で得られたページランクベクトルに基づき、ページ番号を人気順に挙げよ。
 
 #+begin_src scilab
 [y, k] = gsort(x);
@@ -56,7 +109,14 @@ k
    6.
    5.
 #+end_src
-
+* 課題3
+**
+　ページランクベクトルの更新式を用いることで、生成した行列 $P$ に関するページランクベクトルを計算し、かくはんぷくでの
+\begin{eqnarray*}
+\cfrec{1}{|\bm{x}^{k}|_2} |[\alpha P + (1 - \alpha)\bm{v}\bm{e}^T] \bm{x}^{k} - \bm{x}|_2
+\end{eqnarray*}
+　の値をグラフに描け。
+　ページランクを計算するための関数を作成した。
 #+begin_src scilab
 function [R, count, x] = mypagerank(P, alpha),
 n = size(P)(1);
@@ -79,22 +139,16 @@ count = count - 1
 endfunction
 #+end_src
 
-#+begin_src scilab
-P = [0 0 1 0 0 0,
-     0 0 0 1 0 1/2,
-     0 1/2 0 0 0 0,
-     1 1/2 0 0 0 1/2,
-     0 0 0 0 0 0,
-     0 0 0 0 1 0];
-alpha = 0.85;
-#+end_src
-
+　作成された生成される確率遷移行列 P を "matrixP.sci" に保存した。
 #+begin_src scilab
 load('matrixP.sci');
 alpha = 0.85;
 [R, count, x] = mypagerank(P, alpha);
 plot2d('nl',R);
 #+end_src
+
+**
+　(3-1) で得られたページランクベクトルに基づき、ページ番号を人気順に上か3つ挙げよ。
 
 #+begin_src scilab
 [k, l] = gsort(x);
@@ -110,8 +164,10 @@ l(1:3)
    662.
 #+end_src
 
+**
+ (3-1) において、 $\alpha$ の値を $\alpha = 0.5, 0.55, 0.6, \dots , 0.95$ と変更したときの収束までの反復回数をグラフに描け。
+ 
 #+begin_src scilab
-
 alphas = linspace(0.5, 0.95, 19)
 Rs = zeros(1, 1)
 c = 1

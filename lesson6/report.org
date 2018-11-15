@@ -1,3 +1,12 @@
+* 課題1
+**
+$\bm{a}_{\lambda}$ は 固有値 $\lambda$ に対する固有ベクトルとする。
+\begin{eqnarray*}
+A \bm{a}_{\lambda} &=& \lambda \bm{a}_{\lambda} \\
+\bm{a}_{\lambda} &=& A^{-1} \lambda \bm{a}_{\lambda} \\
+\cfrac{1}{\lambda} \bm{a}_{\lambda} = A^{-1}\bm{a}_{\lambda}\ \because \lambda \neq 0
+\end{eqnarray*}
+
 #+begin_src scilab
 A = [2, 1, 0; 1, 2, 1; 0, 1, 2]
 x_0 = [1; 1; 1]
