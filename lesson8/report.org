@@ -1,0 +1,106 @@
+* 課題2
+#+begin_src scilab
+A = [1 1 1 1 1; 1 2 2 2 2; 1 2 3 3 3; 1 2 3 4 4; 1 2 3 4 5];
+B = [2 1 0 0 0; 1 2 1 0 0; 0 1 2 1 0; 0 0 1 2 1; 0 0 0 1 2];
+#+end_src
+
+
+#+begin_src scilab 
+function [lambdas, Xs] =  solveGeigenvalueProblem(v_0, A, B, sig)
+R = chol(B)
+lambdas = zeros(0)
+Xs = v_0
+step = 1
+v = v_0
+r = 1
+while r > 10e-10,
+  w = R * inv(A - sig * B) * R' * v;
+  lambdas(step) = 1/ (v' * w) + sig;
+  v = w / norm(w);
+  x = inv(R) * v;
+  Xs(:, step) = x / norm(x);
+  r = norm(A * Xs(:, step) - lambdas(step) * B * Xs(:, step));
+  step = step + 1;
+end
+endfunction
+#+end_src
+
+#+begin_src scilab
+v_0 = repmat(1, size(A)(1), 1)
+sig = 2
+[lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig)
+#+end_src
+
+#+begin_src scilab
+sigs = linspace(0.005, 1.995, 1991);
+
+lambda = zeros(0);
+step = zeros(0);
+c = 1;
+for sig = sigs
+[lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig);
+lambda(c) = lambdas($);
+step(c) = size(lambdas)(1);
+c = c + 1;
+end
+#+end_src
+
+* 課題3
+
+#+begin_src scilab
+A = [2 1 0; 1 2 1; 0 1 2]
+B = [1 0 0; 0 1 0; 0 0 0]
+#+end_src
+
+#+begin_src scilab
+spec(A, B)
+spec(B, A)
+#+end_src
+
+#+begin_src scilab
+--> spec(A, B)
+ ans  =
+
+   2.7807764  
+   0.7192236  
+   Inf + Nani
+
+
+--> spec(B, A)
+ ans  =
+
+   0.3596118  
+   1.3903882  
+   0.  
+#+end_src
+
+spec(B, A) * 2 = spec(A, B)
+* 課題4
+
+#+begin_src scilab
+sigma = 0.4
+[W, D] = make_WD(U, sigma);
+v_0 = repmat(1,size(D)(1) ,1);
+L = D - W;
+[lambdas, Xs] = solveGeigenvalueProblem(v_0, L, D, 0.006);
+scatter(linspace(1, size(D)(1), size(D)(1))', Xs(:, $))
+#+end_src
+
+#+begin_src scilab
+mu = mean(Xs(:, $));
+x_a = zeros (1);
+y_a = zeros (1);
+x_b = zeros (1);
+y_b = zeros (1);
+for i = 1:size (D) (1)
+  if Xs (i, $) > mu then 
+  x_a ($+1) = i;
+  y_a ($+1) = Xs (i, $);
+  else
+  x_b ($+1) = i;
+  y_b ($+1) = Xs (i, $);
+  end
+end
+scatter (x_a, y_a, 20, 'blue1')
+scatter (x_b, y_b, 20, 'red1')
+#+end_src
