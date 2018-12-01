@@ -1,10 +1,88 @@
+#+TITLE: 数理アルゴリズムとシミュレーション
+#+SUBTITLE: 演習課題3
+#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
+# This is a Bibtex reference
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
+#+DATE: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
+#+LATEX_CLASS: ma-simu
+#+LATEX_CLASS_OPTIONS: 
+#+LaTeX_CLASS_OPTIONS:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+STARTUP: indent overview inlineimages
+
+* 課題1
+  実対称行列を $A$ ,  正定値対称行列 $B$ からなる一般化固有値問題を $A \bm{x} = \lambda B \bm{x}$ とする。このとき、以下の問いに答えよ。
+** B のコレスキー分解を $B = R^TR$ とする。
+   　このとき、一般化固有値問題の固有値・固有ベクトルと、帰着させた標準固有値問題の固有値・固有ベクトルの関係について述べよ。
+   
+   　 $B$ は正定値行列であることから、コレスキー分解によって得られる $R$ は正則な上三角行列である。正則であることから、 $(R^T)^{-1} = (R^{-1})^T$ であり、一般化固有問題に対し両辺に左側から $(R^T)^{-1}$ をかけると、
+   #+name: eqn:1
+   \begin{eqnarray}
+   (R^T)^{-1} A \bm{x} &=& \lambda (R^T)^{-1} R^T R \bm{x} \notag \\
+   (R^T)^{-1} A \bm{x} &=& \lambda (R (R)^{-1})^T  R \bm{x} \notag \\
+   (R^T)^{-1} A \bm{x} &=& \lambda I^T  R \bm{x} \notag \\
+   (R^T)^{-1} A \bm{x} &=& \lambda R \bm{x} \notag  \\
+   (R^T)^{-1} A R^{-1} R \bm{x} &=& \lambda R \bm{x} \notag \\
+   A' y &=& \lambda y \ \ \ \ y = R \bm{x}, A' = (R^T)^{-1} A R^{-1}
+   \end{eqnarray}
+   
+   　 [[eqn:1][式1]] より、固有値 $\lambda$ は変わらず、固有ベクトルは元の $\bm{x}$ に対して $R$ 倍されていることがわかる。
+** この一般化固有値問題の固有値 $\lambda$ は実数であることを示せ。
+   　 [[eqn:1 ][式1]] の $A'$ について言及すると、これは実対称行列 $A$ に対して正方行列 R を用いて、 $A' = R^T A R$ としている。この操作によって得られる行列は実対称行列であることは以下より示せる。
+   \begin{eqnarray*}
+   (A')^T = (R^T A R)^T = R^T A (R^T)^T = R^T A R = A'
+   \end{eqnarray*}
+   　実対称行列 A' の固有値はすべて実数であることは以下より示せるので、すなわち $\lambda$ は実数である。
+   \begin{eqnarray*}
+   A' \bm{y} &=& \lambda \bm{y} \\
+   \lambda \overline{\bm{y}}^T \bm{y} &=& \overline{\bm{y}}^T A \bm{y}\\
+           &=& \overline{\bm{y}}^T \overline{A}^T \bm{y}  \ \because A = \overline{A}^T\\
+           &=& \overline{(A \bm{y})}^T \bm{y} \\
+           &=& \overline{(\lambda \bm{y}^T)} \bm{y} \\
+           &=& \overline{\lambda} \overline{\bm{y}}^T \bm{y}
+   \end{eqnarray*}
 * 課題2
+  一般化固有値・固有ベクトルをコレスキー分解と逆反復法によって求める。
+** 行列 A, B を
+
+\begin{eqnarray*}
+A = \left (
+\begin{array}{ccccc}
+1&1&1&1&1\\
+1&2&2&2&2\\
+1&2&3&3&3\\
+1&2&3&4&4\\
+1&2&3&4&5
+\end{array}
+\right ), \ 
+B = \left (
+\begin{array}{ccccc}
+2&1&0&0&0\\
+1&2&1&0&0\\
+0&1&2&1&0\\
+0&0&1&2&1\\
+0&0&0&1&2\\
+\end{array}
+\right )
+\end{eqnarray*}
+　とし、シフト量を 2 として、一般化固有値問題 $A\bm{x} = \lambda B \bm{x}$ の 2付近の固有値とそれに対応する固有ベクトルを求める Scilab プログラムを作成せよ。
+
+　行列 A B の宣言
 #+begin_src scilab
 A = [1 1 1 1 1; 1 2 2 2 2; 1 2 3 3 3; 1 2 3 4 4; 1 2 3 4 5];
 B = [2 1 0 0 0; 1 2 1 0 0; 0 1 2 1 0; 0 0 1 2 1; 0 0 0 1 2];
 #+end_src
 
-
+ 逆反復法のアルゴリズムを行う関数
 #+begin_src scilab 
 function [lambdas, Xs] =  solveGeigenvalueProblem(v_0, A, B, sig)
 R = chol(B)
@@ -30,7 +108,8 @@ v_0 = repmat(1, size(A)(1), 1)
 sig = 2
 [lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig)
 #+end_src
-
+　
+** (2-1) のプログラムを持ちいて、シフト量を区間 [0.005, 1.995] 内で 0.01 刻みとしたとき、各シフト量で得られる固有値の変化および反復回数の変化をそれぞれグラフに描画せよ。
 #+begin_src scilab
 sigs = linspace(0.005, 1.995, 1991);
 
@@ -46,7 +125,25 @@ end
 #+end_src
 
 * 課題3
+  一般化固有値問題の行列 A, B をそれぞれ以下のとおりとする。
+  \begin{eqnarray*}
+  A = \left (
+\begin{array}{ccc}
+2&1&0\\
+1&2&1\\
+0&1&2
+\end{array}
+\right ),
+B = \left (
+\begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&0
+\end{array}
+\right )
+  \end{eqnarray*}
 
+  この時、Scilab の関数 spec を用いて、 spec(A, B), spec(B, A) を実行して得られる固有値はどのようになるのか。また、その結果について考察せよ。
 #+begin_src scilab
 A = [2 1 0; 1 2 1; 0 1 2]
 B = [1 0 0; 0 1 0; 0 0 0]
@@ -74,8 +171,12 @@ spec(B, A)
    0.  
 #+end_src
 
-spec(B, A) * 2 = spec(A, B)
+spec(B, A) の非ゼロの要素について　spec(A, B) の要素の半分の値になっている。
+
 * 課題4
+  図１のように表されるデータを考える。このデータを距離によって分類することでスペクトラルクラスタリングによるクラスタリングを行う。
+** スペクトラルクラスタリングでは、 $L\bm{x}= \lambdaD\bm{x}, L=D-W$ となる一般化固有値問題の非ゼロの最小固有値に対応する固有ベクトルの要素を用いてクラスタリングを行う。 
+   　ここで、逆反復法を用いてスペクトラルクラスタリングで現れる一般化固有値問題の最小固有値に対応する固有ベクトルを求め、固有ベクトルの要素をグラフに描画せよ。
 
 #+begin_src scilab
 sigma = 0.4
@@ -86,6 +187,7 @@ L = D - W;
 scatter(linspace(1, size(D)(1), size(D)(1))', Xs(:, $))
 #+end_src
 
+** (4-1) で求めた高ベクトルを用いて固有ベクトルの要素が閾値 $\delta$ より大きいか小さいかで２つのグループに分類し、各グループの座標点をグラフに描画せよ。
 #+begin_src scilab
 mu = mean(Xs(:, $));
 x_a = zeros (1);
