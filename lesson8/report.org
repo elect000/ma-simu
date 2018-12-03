@@ -104,9 +104,9 @@ endfunction
 #+end_src
 
 #+begin_src scilab
-v_0 = repmat(1, size(A)(1), 1)
-sig = 2
-[lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig)
+v_0 = repmat(1, size(A)(1), 1);
+sig = 2;
+[lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig);
 #+end_src
 　
 ** (2-1) のプログラムを持ちいて、シフト量を区間 [0.005, 1.995] 内で 0.01 刻みとしたとき、各シフト量で得られる固有値の変化および反復回数の変化をそれぞれグラフに描画せよ。
@@ -122,6 +122,8 @@ lambda(c) = lambdas($);
 step(c) = size(lambdas)(1);
 c = c + 1;
 end
+plot(step, sigs)
+plot(lambda, sigs)
 #+end_src
 
 * 課題3
@@ -194,15 +196,29 @@ x_a = zeros (1);
 y_a = zeros (1);
 x_b = zeros (1);
 y_b = zeros (1);
+
+
+# for i = 1:size (D) (1)
+#  if Xs (i, $) > mu then 
+#  x_a ($+1) = i;
+#  y_a ($+1) = Xs (i, $);
+#  else
+#  x_b ($+1) = i;
+#  y_b ($+1) = Xs (i, $);
+#  end
+# end
+
 for i = 1:size (D) (1)
   if Xs (i, $) > mu then 
-  x_a ($+1) = i;
-  y_a ($+1) = Xs (i, $);
+  x_a ($+1) = U(1, i);
+  y_a ($+1) = U(2, i);
   else
-  x_b ($+1) = i;
-  y_b ($+1) = Xs (i, $);
+  x_b ($+1) = U(1, i);
+  y_b ($+1) = U(2, i);
   end
-end
+ end
+
+
 scatter (x_a, y_a, 20, 'blue1')
 scatter (x_b, y_b, 20, 'red1')
 #+end_src
