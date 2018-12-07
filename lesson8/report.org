@@ -108,10 +108,26 @@ v_0 = repmat(1, size(A)(1), 1);
 sig = 2;
 [lambdas, Xs]= solveGeigenvalueProblem(v_0, A, B, sig);
 #+end_src
+
+#+begin_src scilab
+--> lambdas($)
+ ans  =
+
+   1.
+
+--> Xs(:, $)
+ ans  =
+
+  -0.2672612
+   0.5345225
+  -0.5345225
+   0.5345225
+  -0.2672612
+#+end_src
 　
 ** (2-1) のプログラムを持ちいて、シフト量を区間 [0.005, 1.995] 内で 0.01 刻みとしたとき、各シフト量で得られる固有値の変化および反復回数の変化をそれぞれグラフに描画せよ。
 #+begin_src scilab
-sigs = linspace(0.005, 1.995, 1991);
+sigs = linspace(0.005, 1.995, 200);
 
 lambda = zeros(0);
 step = zeros(0);
@@ -122,8 +138,8 @@ lambda(c) = lambdas($);
 step(c) = size(lambdas)(1);
 c = c + 1;
 end
-plot(step, sigs)
-plot(lambda, sigs)
+plot(sigs', step)
+plot(sigs', lambda)
 #+end_src
 
 * 課題3
@@ -173,7 +189,7 @@ spec(B, A)
    0.  
 #+end_src
 
-spec(B, A) の非ゼロの要素について　spec(A, B) の要素の半分の値になっている。
+spec(B, A) の要素について　spec(A, B) の要素の逆数になっている。
 
 * 課題4
   図１のように表されるデータを考える。このデータを距離によって分類することでスペクトラルクラスタリングによるクラスタリングを行う。

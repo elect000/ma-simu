@@ -15,3 +15,6 @@
 *.blg
 *.bbl
 *.tex
+lesson8/data.mat
+lesson8/w.dat
+lesson8/make_wD.sci
