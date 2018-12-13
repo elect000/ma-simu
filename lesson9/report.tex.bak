@@ -1,0 +1,244 @@
+% Created 2018-12-14 金 01:11
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4j, 11pt]{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\usepackage{amsmath, bm}
+
+\makeatletter
+\title{演習課題9}
+\author{201611350　江畑拓哉}
+\date{2017年12月14日}
+
+\pagestyle{fancy}
+
+% headers & footers
+\lhead{数理アルゴリズム　\@title　提出日：\@date\\\@author}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage /\pageref{LastPage}}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\makeatother
+
+\begin{document}
+\section*{課題1}
+\label{sec:org49110b6}
+
+\subsection{\(\bm{x}\) が最小二乗問題 \(\min_{\bm{x}\in \mathbb{R}^n} \|\bm{b}-A\bm{x}\|_2\) の解であるとき、かつそのときに限り正規方程式 \(A^TA\bm{x}=A^T\bm{b}\) の解であることを示せ。}
+\label{sec:org918d8e2}
+
+\begin{eqnarray*}
+\|A\bm{x} - \bm{b}\|_2 &=& (A\bm{x} - \bm{b})^T(A\bm{x} - \bm{b})\\
+&=& (\bm{x}^TA^T - \bm{b}^T)(A\bm{x} - \bm{b})\\
+&=&  \bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b} \\
+\frac{\mathrm{d}}{\mathrm{d}{\bm{x}}\bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b}} &=& 2A^TA\bm{x} - 2A^T\bm{b}
+\end{eqnarray*}
+
+よって \(\|\bm{b}-A\bm{x}\|_2\) を最小化するためには、 \(A^TA\bm{x} =A^T\bm{b}\) であることが必要であると言える。
+
+
+
+\subsection{行列 \(A \in \mathbb{R}^{m\times n}, rank\ A=n\) の特異値分解は}
+\label{sec:orgb87f29a}
+\begin{eqnarray*}
+A = U \Sigma V^T,\ U\in\mathbb{R}^{m\times n},\ \Sigma\in\mathbb{R}^{n\times n},\ V\in\mathbb{R}^{n\times n},\\
+U^TU=I,\ VV^T=V^TV=I
+\end{eqnarray*}
+　と表せる。このとき、最小二乗問題 \(\min_{\bm{x}\in\mathbb{R}^n}\|\bm{b}-A\bm{x}\|\) の解は \(\bm{x} = V\Sigma^{-1}U^T\bm{b}\) であることを示せ。
+
+(1-1) より、
+\begin{eqnarray*}
+A^TA\bm{x} &=&A^T\bm{b}\\
+&\Leftrightarrow&  \bm{x} = A^{-1} \bm{b}\ \because rank\ A = n\\
+&\Leftrightarrow& \bm{x} = (U\Sigma V^T)^{-1} \bm{b}\\
+&\Leftrightarrow& \bm{x} = V \Sigma^{-1} U^T  \bm{b}
+\end{eqnarray*}
+
+
+\subsection{行列 \(A\) , ベクトル \(\bm{b}\) を}
+\label{sec:org486c520}
+
+   \begin{eqnarray}
+   \left (
+\begin{array}{ccc}
+1&1&1 \\
+1&2&2 \\
+1&2&3 \\
+1&2&3
+\end{array}
+\right )\\
+\left (
+\begin{array}{c}
+4 \\
+5 \\
+6 \\
+7
+\end{array}
+\right )
+   \end{eqnarray}
+　とし、最小二乗問題 \(\min_{\bm{x}}\|\bm{b}-A\bm{x}\|_{2}\) を特異値分解を用いて解く Scilab プログラムを作成し、解を求めよ。
+
+
+　行列の宣言
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+A = [1, 1, 1; 1, 2, 2; 1, 2, 3; 1, 2, 3];
+b = [4; 5; 6; 7];
+\end{minted}
+　
+　最小二乗問題を解く関数
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+function [x] = solveLSP(U, S, V, b)
+  x =  V * inv(S) * U' * b
+endfunction
+\end{minted}
+
+　実行
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+[U, S, V] = svd(A, "e")
+x = solveLSP(U, S, V, b)
+\end{minted}
+
+　解
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+  -->    x = solveLSP(U, S, V, b)
+x  = 
+
+  3.
+ -0.5
+  1.5
+\end{minted}
+
+\section{課題2}
+\label{sec:org2058298}
+　手書き数字の画像データセットである MNIST を用いて手書き数字の画像認識を行う。MNISTの行列データは manaba にアップロードされているため、ダウンロードして用いること。ファイルから得られる行列 X は画像データであり、各列に 1 枚の画像が格納されている。Y は各画像が属するグループを示している。 test＿X, test＿Y はそれぞれテストデータと各画像が属するグループを示している。今回の課題では訓練データとテストデータを 10,000 個ずつ用いる。
+　 manaba にアップロードされている showMNISTimg.sci を使用すると行列 X の先頭から i 番目の列に格納されている訓練データを画像として表示することが出来る。
+
+
+\subsection{行列 \(X\in\mathbb{R}^{m\times n}, Y\in \mathbb{R}^{10\times n}\) に対し、最小二乗問題}
+\label{sec:org4a95cbb}
+\begin{eqnarray*}
+\min_{W\in\mathbb{R}^{10\times m}}\|Y-WX\|_F
+\end{eqnarray*}
+
+　の特異値分解を用いて解く Scilab プログラムを作成せよ。行列 X の特異値を \(\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_m\) としたとき、k を \(\sigma_k/\sigma_1\geq 10^{-14}\) を満たすような最大の整数とする。k 個の特異値とそれぞれの特異値に対応する k 本の特異ベクトルを用いて行列 X の低ランク近似を行うこと。ここでは \(m = 784, n=10,000\) である。
+
+
+　低ランク近似した X を得るための関数
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+function [X_k] = getX_k(U, S, V, k, X)
+  X_k = zeros(size(X)(1), size(X)(2));
+  for i=1:k,
+   X_k = X_k + S(i, i) * U(1:$, i) * V(1:$, i)';
+   if S(i, i) < S(1, 1) * 10e-14 then break; end, 
+  end
+endfunction
+#+end_src scilab
+
+　ブロック最小二乗問題を解くための関数
+#+begin_src scilab
+function [W] = solveBLSP(U, i_S, V, Y)
+  W = Y * V * i_S * U';
+endfunction
+\end{minted}
+　対角行列の逆行列を求める関数
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+function [S_] = inv_(S)
+  S_ = zeros(size(S)(1), size(S)(2))
+  for i=1:rank(S),
+    S_(i, i) =  1/S(i, i)
+  end
+endfunction
+\end{minted}
+
+　実行 
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+[U, S, V] = svd(X);
+k = 784;
+X_k = getX_k(U, S, V, k, X);
+[U, S, V] = svd(X_k, "e");
+W = solveBLSP(U, inv_(S), V, Y);
+\end{minted}
+
+\subsection{得られた行列 \(W\) を用いてテストデータの画像がどのグループに属するか判定することができる。manaba にアップロードされている check.sci を用いて (2-1) で得られた W に対して処理判定を行い、画像認識の正答率を求めよ。check(W, test＿X, test＿Y) と実行すると正答率を求めることができる。}
+\label{sec:org9eb2a38}
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+--> check(W, test_X, test_Y)
+ ans  =
+
+   0.8305   
+\end{minted}
+\subsection{(2-2) では訓練データを 10,000 個用いて画像認識を行ったが、訓練データ数を帰ることで画像認識の正答率は変化する。訓練データ数を行列の先端の列から \(1,000, 2,000, \dots , 10,000\) 個としたときの画像認識の正答率を求める Scilab プログラムを作成し、それぞれの訓練データ数における正答率をグラフに描画せよ。}
+\label{sec:org4f7b16d}
+
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+c = zeros(0);
+for i=1:10,
+  [U, S, V] = svd(X(1:$, 1:1000*i));
+  k = 784;
+  X_k = getX_k(U, S, V, k, X(1:$, 1:1000*i));
+  [U, S, V] = svd(X_k, "e");
+  W = solveBLSP(U, inv_(S), V, Y(1:$, 1:1000*i));
+  c(i) = check(W, test_X, test_Y);
+end
+plot(c, linspace(1000, 10000, 10))
+\end{minted}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=10cm]{./2-1.png}
+\caption{訓練データ数と正答率のグラフ}
+\end{figure}
+
+\subsection{行列 X の低ランク近似を行う際の整数 k を \(\sigma_k/\sigma_1\geq\delta\) を満たすような最大の整数とする。このとき、閾値 \(\delta\) を \(0.005, 0.01, 0.015,\dots , 0.1\) と変えたときの画像認識の正答率を求める Scilab プログラムを作成し、各しきい値に対する正答率をグラフに描画せよ。ただし、訓練データは 10,000個用いること。}
+\label{sec:orgeeb58f3}
+
+　閾値を変更できるようにした低ランク近似の関数
+
+\begin{minted}[frame=lines,linenos=true,obeytabs,tabsize=4]{scilab}
+function [X_k] = getX_k_d(U, S, V, k, X, delta)
+  X_k = zeros(size(X)(1), size(X)(2));
+  for i=1:k,
+   X_k = X_k + S(i, i) * U(1:$, i) * V(1:$, i)';
+   if S(i, i) < S(1, 1) * delta then break; end, 
+  end
+endfunction
+#+end_src scilab
+
+
+#+begin_src scilab
+c = zeros(0);
+deltas = linspace(0.005, 0.1, 20)
+for i=1:20,
+  [U, S, V] = svd(X);
+  k = 784;
+  X_k = getX_k_d(U, S, V, k, X, deltas(i));
+  [U, S, V] = svd(X_k, "e");
+  W = solveBLSP(U, inv_(S), V, Y);
+  c(i) = check(W, test_X, test_Y);
+end
+plot(deltas, c)   
+\end{minted}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=10cm]{./2-2.png}
+\caption{閾値と正答率のグラフ}
+\end{figure}
+\end{document}
