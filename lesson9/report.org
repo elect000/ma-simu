@@ -42,7 +42,7 @@
 
 ** $\bm{x}$ が最小二乗問題 $\min_{\bm{x}\in \mathbb{R}^n} \|\bm{b}-A\bm{x}\|_2$ の解であるとき、かつそのときに限り正規方程式 $A^TA\bm{x}=A^T\bm{b}$ の解であることを示せ。   
    \begin{eqnarray*}
-   \|A\bm{x} - \bm{b}\|_2 &=& (A\bm{x} - \bm{b})^T(A\bm{x} - \bm{b})\\
+   \|A\bm{x} - \bm{b}\|_2^2 &=& (A\bm{x} - \bm{b})^T(A\bm{x} - \bm{b})\\
    &=& (\bm{x}^TA^T - \bm{b}^T)(A\bm{x} - \bm{b})\\
    &=&  \bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b} \\
    \frac{\mathrm{d}}{\mathrm{d}{\bm{x}}}\bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b} &=& 2A^TA\bm{x} - 2A^T\bm{b}
@@ -75,6 +75,7 @@
    \begin{eqnarray}
 A =    \left (
 \begin{array}{ccc}
+
 1&1&1 \\
 1&2&2 \\
 1&2&3 \\
