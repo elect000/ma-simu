@@ -1,23 +1,29 @@
-#+TITLE: 数理アルゴリズムとシミュレーション
-#+SUBTITLE: 演習課題3
-#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
-# This is a Bibtex reference
-#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
-#+OPTIONS: author:t broken-links:nil c:nil creator:nil
-#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
-#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
-#+DATE: 
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:nil
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:nil e:t
+#+OPTIONS: email:nil f:nil inline:nil num:t p:nil pri:nil prop:nil stat:t tags:t
+#+OPTIONS: tasks:t tex:t timestamp:t title:nil toc:nil todo:nil |:t
+#+TITLE: report
+#+DATE: <2018-12-14 金>
+#+AUTHOR: elect
+#+EMAIL: elect@elect-emacs
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
-#+LATEX_CLASS: ma-simu
-#+LATEX_CLASS_OPTIONS: 
-#+LaTeX_CLASS_OPTIONS:
+#+CREATOR: Emacs 26.1 (Org mode 9.1.6)
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4j, 11pt]
+#+LATEX_HEADER: \usepackage[dvipdfmx]{graphicx}
+#+LATEX_HEADER: \usepackage{lastpage}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{amsmath, bm}
+#+LATEX_HEADER_EXTRA:
 #+DESCRIPTION:
 #+KEYWORDS:
-#+STARTUP: indent overview inlineimages
+#+SUBTITLE:
+#+LATEX_COMPILER: pdflatex
+
 
 * 課題1
   実対称行列を $A$ ,  正定値対称行列 $B$ からなる一般化固有値問題を $A \bm{x} = \lambda B \bm{x}$ とする。このとき、以下の問いに答えよ。
@@ -126,6 +132,7 @@ sig = 2;
 #+end_src
 　
 ** (2-1) のプログラムを持ちいて、シフト量を区間 [0.005, 1.995] 内で 0.01 刻みとしたとき、各シフト量で得られる固有値の変化および反復回数の変化をそれぞれグラフに描画せよ。
+
 #+begin_src scilab
 sigs = linspace(0.005, 1.995, 200);
 
@@ -141,7 +148,11 @@ end
 plot(sigs', step)
 plot(sigs', lambda)
 #+end_src
-
+#+CAPTION: 各シフト量で得られる固有値の変化
+#+ATTR_LATEX: :width 10cm
+[[./2-2-1.png]]
+#+CAPTION: 各シフト量で得られる反復回数の変化
+[[./2-2-2.png]]
 * 課題3
   一般化固有値問題の行列 A, B をそれぞれ以下のとおりとする。
   \begin{eqnarray*}
@@ -193,7 +204,7 @@ spec(B, A) の要素について　spec(A, B) の要素の逆数になってい�
 
 * 課題4
   図１のように表されるデータを考える。このデータを距離によって分類することでスペクトラルクラスタリングによるクラスタリングを行う。
-** スペクトラルクラスタリングでは、 $L\bm{x}= \lambdaD\bm{x}, L=D-W$ となる一般化固有値問題の非ゼロの最小固有値に対応する固有ベクトルの要素を用いてクラスタリングを行う。 
+** スペクトラルクラスタリングでは、 $L\bm{x}= \lambda D\bm{x}, L=D-W$ となる一般化固有値問題の非ゼロの最小固有値に対応する固有ベクトルの要素を用いてクラスタリングを行う。 
    　ここで、逆反復法を用いてスペクトラルクラスタリングで現れる一般化固有値問題の最小固有値に対応する固有ベクトルを求め、固有ベクトルの要素をグラフに描画せよ。
 
 #+begin_src scilab
@@ -204,6 +215,9 @@ L = D - W;
 [lambdas, Xs] = solveGeigenvalueProblem(v_0, L, D, 0.006);
 scatter(linspace(1, size(D)(1), size(D)(1))', Xs(:, $))
 #+end_src
+#+CAPTION: 固有ベクトルの要素のグラフ
+#+ATTR_LATEX: :width 10cm
+[[./4-1.png]]
 
 ** (4-1) で求めた高ベクトルを用いて固有ベクトルの要素が閾値 $\delta$ より大きいか小さいかで２つのグループに分類し、各グループの座標点をグラフに描画せよ。
 #+begin_src scilab
@@ -238,3 +252,6 @@ for i = 1:size (D) (1)
 scatter (x_a, y_a, 20, 'blue1')
 scatter (x_b, y_b, 20, 'red1')
 #+end_src
+#+CAPTION: 各グループの座標点
+#+ATTR_LATEX: :width 10cm
+[[./4-2.png]]

@@ -1,23 +1,41 @@
-#+TITLE: 数理アルゴリズムとシミュレーション
-#+SUBTITLE: 演習課題3
-#+AUTHOR: 情報科学類３年 江畑 拓哉 (201611350)
-# This is a Bibtex reference
-#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:t arch:headline ^:nil
-#+OPTIONS: author:t broken-links:nil c:nil creator:nil
-#+OPTIONS: d:(not "LOGBOOK") date:nil e:nil email:nil f:t inline:t num:t
-#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-#+OPTIONS: timestamp:nil title:t toc:nil todo:t |:t
-#+DATE: 
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:nil
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:nil e:t
+#+OPTIONS: email:nil f:nil inline:nil num:t p:nil pri:nil prop:nil stat:t tags:t
+#+OPTIONS: tasks:t tex:t timestamp:t title:nil toc:nil todo:nil |:t
+#+TITLE: report
+#+DATE: <2018-12-14 金>
+#+AUTHOR: elect
+#+EMAIL: elect@elect-emacs
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
-#+CREATOR: Emacs 24.5.1 (Org mode 9.1.4)
-#+LATEX_CLASS: ma-simu
-#+LATEX_CLASS_OPTIONS: 
-#+LaTeX_CLASS_OPTIONS:
+#+CREATOR: Emacs 26.1 (Org mode 9.1.6)
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4j, 11pt, dvipdfmx]
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{grffile}
+#+LATEX_HEADER: \usepackage{longtable}
+#+LATEX_HEADER: \usepackage{wrapfig}
+#+LATEX_HEADER: \usepackage{rotating}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{capt-of}
+#+LATEX_HEADER: \usepackage{lastpage}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{amsmath, bm}
+#+LATEX_HEADER: \setlength{\headheight}{30pt}
+
+#+LATEX_HEADER_EXTRA:
 #+DESCRIPTION:
 #+KEYWORDS:
-#+STARTUP: indent overview inlineimages
+#+SUBTITLE:
+#+LATEX_COMPILER: pdflatex
 
 
 * 
@@ -27,7 +45,7 @@
    \|A\bm{x} - \bm{b}\|_2 &=& (A\bm{x} - \bm{b})^T(A\bm{x} - \bm{b})\\
    &=& (\bm{x}^TA^T - \bm{b}^T)(A\bm{x} - \bm{b})\\
    &=&  \bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b} \\
-   \frac{\mathrm{d}}{\mathrm{d}{\bm{x}}}\bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b}} &=& 2A^TA\bm{x} - 2A^T\bm{b}
+   \frac{\mathrm{d}}{\mathrm{d}{\bm{x}}}\bm{x}^TA^TA\bm{x} - 2\bm{x}^TA^T\bm{b} + \bm{b}^T\bm{b} &=& 2A^TA\bm{x} - 2A^T\bm{b}
    \end{eqnarray*}
    
    よって $\|\bm{b}-A\bm{x}\|_2$ を最小化するためには、 $A^TA\bm{x} =A^T\bm{b}$ であることが必要であると言える。
@@ -55,15 +73,15 @@
 ** 行列 $A$ , ベクトル $\bm{b}$ を
    
    \begin{eqnarray}
-   \left (
+A =    \left (
 \begin{array}{ccc}
 1&1&1 \\
 1&2&2 \\
 1&2&3 \\
 1&2&3
 \end{array}
-\right )\\
-\left (
+\right )
+b = \left (
 \begin{array}{c}
 4 \\
 5 \\
