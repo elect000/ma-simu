@@ -144,7 +144,7 @@ b = \left (
       if S(i, i) < S(1, 1) * 10e-14 then break; end, 
      end
    endfunction
-   #+end_src scilab
+   #+end_src
    
    　ブロック最小二乗問題を解くための関数
    #+begin_src scilab
